@@ -1,19 +1,21 @@
 import { Search ,Bell,Menu, User, Settings, LogOut, Settings2} from 'lucide-react'
 import React, { useState } from 'react'
 
-export default function Header() {
+export default function Header({isOpen,toggleSideBar}) {
     const [isDropdownPopupOpened,setisDropdownPopupOpened] =useState(false)
+    console.log(isOpen)
+
   return (
-    <nav className='fixed top-0 w-full z-50 transition-all duration-300'>
-        <div className='h-16 px-10 bg-white flex items-center'>
+    <nav className={`sticky top-0 w-full z-50 transition-all duration-500`}>
+        <div className='h-14 px-10 bg-white flex items-center w-full'>
             <div className='w-full h-12 bg-white flex items-center justify-between'>
                 {/* search bar and side bar button */}
                 <div className='flex gap-x-3 items-center '>
-                    <button>
+                    <button onClick={toggleSideBar}>
                         <Menu className='w-5 h-5 text-black'/>
                     </button>
                     <div className='hidden md:block'>
-                        <Search className='absolute w-4 h-4 text-gray-600 top-6 left-20 '/>
+                        <Search className='absolute w-4 h-4 text-gray-600 top-5 left-20 '/>
                         <input type="text" name="" id="" placeholder='Search...' className=' bg-gray-200 outline-none focus:outline-none focus:border-2 focus:border-blue-500 focus:duration-50 focus:ease-in-out rounded-xl w-60 py-2 pl-8 pr-4  text-sm text-gray-800'/>
                     </div>
                 </div>
