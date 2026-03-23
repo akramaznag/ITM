@@ -1,13 +1,16 @@
 import { Search ,Bell,Menu, User, Settings, LogOut, Settings2} from 'lucide-react'
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
+import useClosePopup from '../hooks/useClosePopup'
 
 export default function Header({isOpen,toggleSideBar}) {
     const [isDropdownPopupOpened,setisDropdownPopupOpened] =useState(false)
-    console.log(isOpen)
+    const popupRef = useRef();
+    useClosePopup(popupRef,setisDropdownPopupOpened)
+        
 
   return (
     <nav className={`sticky top-0 w-full z-30 transition-all duration-500`}>
-        <div className='h-14 px-10 bg-white flex items-center w-full'>
+        <div className='h-14 px-10 bg-white flex items-center w-full' >
             <div className='w-full h-12 bg-white flex items-center justify-between'>
                 {/* search bar and side bar button */}
                 <div className='flex gap-x-3 items-center '>
@@ -33,7 +36,7 @@ export default function Header({isOpen,toggleSideBar}) {
                             {
                                 isDropdownPopupOpened &&
 
-                                <div className=' absolute  top-12 right-0 sm:translate-x-21 w-45 h-auto p-1 bg-white rounded-xl shadow-lg z-40 animate-in slide-in-from-top duration-300 '>
+                                <div ref={popupRef} className=' absolute  top-12 right-0 sm:translate-x-21 w-45 h-auto p-1 bg-white rounded-xl shadow-lg z-40 animate-in slide-in-from-top duration-300 '>
                                     <div className='flex flex-col gap-y-2'>
 
                                         {/* profile and setting container */}
