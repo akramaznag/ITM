@@ -8,7 +8,14 @@ function App() {
     <>
     <div className="min-h-screen text-white overflow-hidden bg-slate-100 flex  w-full">
       <SideBar isOpen={isSidebarOpened}/>
-      <div className={`flex-1 flex flex-col w-full`}>
+       {/* Overlay when sidebar is open on mobile */}
+      {isSidebarOpened && (
+        <div
+          className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 md:hidden"
+          onClick={() => setisSidebarOpened(false)}
+        ></div>
+      )}
+      <div className={`flex flex-col w-full z-30`}>
 
           <Header isOpen={isSidebarOpened} toggleSideBar={()=>setisSidebarOpened(!isSidebarOpened)}/>
       </div>

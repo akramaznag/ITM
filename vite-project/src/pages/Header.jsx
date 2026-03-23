@@ -6,7 +6,7 @@ export default function Header({isOpen,toggleSideBar}) {
     console.log(isOpen)
 
   return (
-    <nav className={`sticky top-0 w-full z-50 transition-all duration-500`}>
+    <nav className={`sticky top-0 w-full z-30 transition-all duration-500`}>
         <div className='h-14 px-10 bg-white flex items-center w-full'>
             <div className='w-full h-12 bg-white flex items-center justify-between'>
                 {/* search bar and side bar button */}

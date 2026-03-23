@@ -1,5 +1,8 @@
 @import "tailwindcss";
-
+:root {
+  --near-white: 220 14% 96%;
+  --light-gray: 220 14% 80%;
+}
 @layer utilities{
     .animate-in{
         animation-fill-mode: both;

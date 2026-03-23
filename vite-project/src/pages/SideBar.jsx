@@ -1,21 +1,63 @@
-import { Settings, Settings2, Settings2Icon, Wrench } from 'lucide-react'
+import { DownloadCloud, File, LayoutDashboard, Monitor, Phone, Settings, Settings2, Settings2Icon, User, Users, Wrench } from 'lucide-react'
 import React from 'react'
 
 export default function SideBar({isOpen}) {
     console.log(isOpen)
   return (
-    <div className={`h-screen ${isOpen? 'w-[20%] slide-in-from-left duration-500' :'w-[4%] slide-in-from-right duration-500'} bg-slate-900`}>
+    <div className={`w-0 md:block h-screen z-50 md:z-0 fixed top-0 left-0 md:static transform transition-[width,transform] duration-500
+    ${isOpen? 'w-[60%] md:w-[25%]  slide-in-from-left' 
+    :' md:w-[4%] slide-in-from-right '} bg-slate-900`}>
 
-      {/* website name */}
-      <div className='h-18 flex justify-start items-center gap-x-3 px-4'>
-        {/* website icon */}
-        <div className=' bg-blue-500 rounded-lg flex items-center justify-center w-9 h-9'>
-          <Wrench className='w-5 h-5 font-bold'/>
+      {/* SideBar content */}
+      <div className={`${isOpen ? 'px-3':'hidden md:flex px-1'}`}>
+           
+        {/* SideBar heading */}
+        <div className={`h-18 flex justify-start items-center gap-x-3 ${isOpen?'px-3' :'px-1'} mb-3`}>
+            {/* website icon */}
+            <div className={`${!isOpen && 'md:flex'} bg-blue-600 rounded-xl flex items-center justify-center w-9 h-9`}>
+              <Wrench className='w-5 h-5 font-bold'/>
+            </div>
+            {/* website title and subtitle */}
+            <div className={`${!isOpen && 'md:hidden' }`}>
+              <h1 className='font-bold'>ITM</h1>
+              <p className='text-xs text-gray-500 font-normal tracking-wide'>IT MAROC</p>
+            </div>
         </div>
-        {/* website title and subtitle */}
-        <div>
-          <h1 className='font-bold'>ITM</h1>
-          <p className='text-xs text-gray-500 font-normal tracking-wide'>IT MAROC</p>
+        {/* user Role */}
+        <div className={`mb-3 `}>
+          <span className={`text-xs tracking-wide text-gray-600 font-bold  ${isOpen ? 'block':'invisible'}`}>ADMIN</span>
+        </div>
+        <div className={`h-screen flex flex-col items-center  ${!isOpen && 'md:relative md:top-20 md:right-21 md:gap-y-3'} gap-y-2`}>
+          
+            <div className={`flex items-center  gap-x-2 w-full hover:bg-gray-500/10 group rounded-md py-1 px-2 cursor-pointer`}>
+              <LayoutDashboard className='w-4 h-4 text-[hsl(var(--light-gray))] group-hover:text-white'/>
+              <span className={`text-sm  ${!isOpen && 'md:hidden'} text-[hsl(var(--light-gray))] group-hover:text-white`}>Dashboard</span>
+            </div>
+            {/*  */}
+            <div className='flex items-center gap-x-2 w-full hover:bg-gray-500/10 group rounded-md py-1 px-2 cursor-pointer'>
+              <File className='w-4 h-4 text-[hsl(var(--light-gray))] group-hover:text-white'/>
+              <span className={`text-sm  ${!isOpen && 'md:hidden'} text-[hsl(var(--light-gray))] group-hover:text-white`}>Requests</span>
+            </div>
+            {/*  */}
+           <div className='flex items-center gap-x-2 w-full hover:bg-gray-500/10 group rounded-md py-1 px-2 cursor-pointer'>
+              <Phone className='w-4 h-4 text-[hsl(var(--light-gray))] group-hover:text-white'/>
+              <span className={`text-sm  ${!isOpen && 'md:hidden'} text-[hsl(var(--light-gray))] group-hover:text-white`}>Calls</span>
+            </div>
+            {/*  */}
+            <div className='flex items-center gap-x-2 w-full hover:bg-gray-500/10 group rounded-md py-1 px-2 cursor-pointer'>
+              <Monitor className='w-4 h-4 text-[hsl(var(--light-gray))] group-hover:text-white'/>
+              <span className={`text-sm ${!isOpen && 'md:hidden'}  text-[hsl(var(--light-gray))] group-hover:text-white`}>products</span>
+            </div>
+            {/*  */}
+            <div className='flex items-center gap-x-2 w-full hover:bg-gray-500/10 group rounded-md py-1 px-2 cursor-pointer'>
+              <Wrench className='w-4 h-4 text-[hsl(var(--light-gray))] group-hover:text-white'/>
+              <span className= {` ${!isOpen && 'md:hidden'} text-sm  text-[hsl(var(--light-gray))] group-hover:text-white`}>Technicians</span>
+            </div>
+             {/*  */}
+            <div className={`flex items-center  gap-x-2 w-full hover:bg-gray-500/10 group rounded-md py-1 px-2 cursor-pointer`}>
+              <Settings className={` w-4 h-4 text-[hsl(var(--light-gray))] group-hover:text-white`}/>
+              <span className={` ${!isOpen && 'md:hidden'} text-sm  text-[hsl(var(--light-gray))] group-hover:text-white`}>Settings</span>
+            </div>
         </div>
       </div>
 
