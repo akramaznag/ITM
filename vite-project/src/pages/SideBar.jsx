@@ -4,12 +4,12 @@ import React from 'react'
 export default function SideBar({isOpen}) {
     console.log(isOpen)
   return (
-    <div className={`w-0 md:block h-screen z-50 md:z-0 fixed top-0 left-0 md:static transform transition-[width,transform] duration-500
+    <div className={`w-0 md:block min-h-screen z-50 md:z-0 fixed top-0 left-0 md:static transform transition-[width,transform] duration-500
     ${isOpen? 'w-[60%] md:w-[25%]  slide-in-from-left' 
     :' md:w-[4%] slide-in-from-right '} bg-slate-900`}>
 
       {/* SideBar content */}
-      <div className={`${isOpen ? 'px-3':'hidden md:flex px-1'}`}>
+      <div className={`fixed ${isOpen ? 'px-3':'hidden md:flex px-1'}`}>
            
         {/* SideBar heading */}
         <div className={`h-18 flex justify-start items-center gap-x-3 ${isOpen?'px-3' :'px-1'} mb-3`}>

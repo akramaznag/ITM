@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Header from "./pages/Header"
 import SideBar from "./pages/SideBar";
+import Body from "./pages/Body";
 function App() {
   const [isSidebarOpened,setisSidebarOpened] = useState(true);
 
@@ -18,6 +19,7 @@ function App() {
       <div className={`flex flex-col w-full z-30`}>
 
           <Header isOpen={isSidebarOpened} toggleSideBar={()=>setisSidebarOpened(!isSidebarOpened)}/>
+          <Body/>
       </div>
     </div>
     </>
