@@ -2,6 +2,7 @@ import { createBrowserRouter, Navigate } from "react-router-dom";
 import DashboardLayout from "../components/DashboardLayout";
 import AdminDashboard from "../pages/Admin/AdminDashboard";
 import AdminRequests from "../pages/Admin/AdminRequests"
+import GetRequest from "../pages/Admin/GetRequest";
 
 const router = createBrowserRouter([
   // Landing page
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path:"requests",
         element:<AdminRequests/>
+      },
+      {
+        path:"requests/:id",
+        element:<GetRequest/>
       }
 
     ],
