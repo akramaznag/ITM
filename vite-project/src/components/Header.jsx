@@ -65,8 +65,6 @@ export default function Header({isOpen,toggleSideBar}) {
                                                 </div>
                                             </div>
                                     </div>
-
-
                                 </div>
                             }
 

@@ -1,14 +1,15 @@
-import { CheckCircle, CircleAlert, Clock, File, Monitor, Phone } from 'lucide-react'
 import React from 'react'
+import { CheckCircle, CircleAlert, Clock, File, Monitor, Phone } from 'lucide-react'
 
-export default function Body() {
+export default function AdminDashboard() {
   return (
-    <div className='bg-red min-h-auto w-full px-6 py-8'>
-        {/* dashboard heading */}
+      <>
+      {/* dashboard heading */}
+     
         
         <div className='mb-4'>
             <h1 className='font-bold text-2xl text-black'>Dashboard</h1>
-            <p className='text-[hsl(var(--light-gray))] text-sm'>Overview of your IT management operations</p>
+            <p className='text-gray-600 text-sm'>Overview of your IT management operations</p>
         </div>
         {/* cards  */}
         <div className="mb-5 w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -19,7 +20,7 @@ export default function Body() {
                     <div className='text-black font-bold text-2xl'>142</div>
                     <div className='text-xs  text-green-400 font-bold'>+12% by this month</div>
                 </div>
-                <div className='bg-blue-200 w-10 h-10 rounded-lg flex justify-center items-center'>
+                <div className='bg-blue-100 w-10 h-10 rounded-lg flex justify-center items-center'>
                     <File className='w-5 h-5 text-blue-500'/>
                 </div>
 
@@ -31,7 +32,7 @@ export default function Body() {
                     <div className='text-black font-bold text-2xl'>89</div>
                     <div className='text-xs  text-green-400 font-bold'>+5% new</div>
                 </div>
-                <div className='bg-blue-200 w-10 h-10 rounded-lg flex justify-center items-center'>
+                <div className='bg-blue-100 w-10 h-10 rounded-lg flex justify-center items-center'>
                     <Monitor className='w-5 h-5 text-blue-500'/>
                 </div>
 
@@ -43,7 +44,7 @@ export default function Body() {
                     <div className='text-black font-bold text-2xl'>8</div>
                     <div className='text-xs  text-red-400 font-bold'>3 pending</div>
                 </div>
-                <div className='bg-blue-200 w-10 h-10 rounded-lg flex justify-center items-center'>
+                <div className='bg-blue-100 w-10 h-10 rounded-lg flex justify-center items-center'>
                     <Phone className='w-5 h-5 text-blue-500'/>
                 </div>
 
@@ -54,7 +55,7 @@ export default function Body() {
                     <div className='text-black font-bold text-2xl'>118</div>
                     <div className='text-xs  text-green-400 font-bold'>83% rate</div>
                 </div>
-                <div className='bg-blue-200 w-10 h-10 rounded-lg flex justify-center items-center'>
+                <div className='bg-blue-100 w-10 h-10 rounded-lg flex justify-center items-center'>
                     <CheckCircle className='w-5 h-5 text-blue-500'/>
                 </div>
 
@@ -216,7 +217,6 @@ export default function Body() {
          
 
         </div>
-        
-    </div>
-  )
+    </>
+   )
 }

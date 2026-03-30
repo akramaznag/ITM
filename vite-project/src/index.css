@@ -2,6 +2,7 @@
 :root {
   --near-white: 220 14% 96%;
   --light-gray: 220 14% 80%;
+  --accent: 168 70% 42%;
 }
 @layer utilities{
     .animate-in{
