@@ -3,6 +3,7 @@ import { CheckCircle, ChevronDown, CircleAlert, Clock, File, Monitor, Phone,Sear
 import { requestStatus } from '../../staticData/staticData';
 import { requests } from '../../staticData/staticData';
 import { ColorsRendering } from '../../staticData/staticData';
+import { Link } from 'react-router-dom';
 export default function AdminRequests() {
     const [isFilteropened,setisFilteropened] =useState(false)
     const [filterValue,setFilterValue]=useState({
@@ -43,7 +44,7 @@ export default function AdminRequests() {
                  <span className='block capitalize'>{filterValue.value}</span>
                 </div>
                 {/*popup  */}
-                <div onMouseEnter={() => setIsHoveringList(true)} onMouseLeave={() => setIsHoveringList(false)} className={`${isFilteropened?'block':'hidden'} absolute top-12 right-0 w-32 md:w-38 lg:w-41 h-auto p-1 bg-white rounded-xl shadow-lg z-40 animate-in slide-in-from-top duration-300`}>
+                <div onMouseEnter={() => setIsHoveringList(true)} onMouseLeave={() => setIsHoveringList(false)} className={`${isFilteropened?'block':'hidden'} absolute top-12 right-0 w-34 md:w-38 lg:w-41 h-auto p-1 bg-white rounded-xl shadow-lg z-40 animate-in slide-in-from-top duration-300`}>
                     <div className='flex flex-col gap-y-2'>
                         <div className='flex flex-col gap-y-1'>
                             {
@@ -70,7 +71,7 @@ export default function AdminRequests() {
            
         </div>
         {/* requests analytics section */}
-        <div   className='w-full  h-auto overflow-x-auto md:overflow-x-hidden bg-white border border-gray-200 rounded-xl shadow-sm'>
+        <div   className='w-full  h-auto overflow-x-auto md:overflow-x-hidden bg-white border border-gray-200 rounded-xl'>
                
                     {/* columns */}
                     <div className='min-w-[650px] sm:w-full md:w-full px-3 h-13 md:px-4 md:py-3 grid grid-cols-[0.8fr_1.2fr_0.8fr_2fr_1.2fr_1.5fr_1fr_0.5fr] md:grid-cols-[0.8fr_1.2fr_1fr_1.5fr_1fr_1.5fr_1fr_0.5fr] items-center border border-t-gray-200 border-b-gray-300 '>
@@ -93,7 +94,9 @@ export default function AdminRequests() {
 
                                 <div className='min-w-[650px] sm:w-full  md:w-full px-3 py-2 md:px-4 md:py-3 grid grid-cols-[0.8fr_1.2fr_0.8fr_2fr_1.2fr_1.5fr_1fr_0.5fr] md:grid-cols-[0.8fr_1.2fr_1fr_1.5fr_1fr_1.5fr_1fr_0.5fr] items-center    border border-t-gray-200 border-b-gray-300 '>
                                     {/* request ID */}
-                                    <div className='text-blue-500 text-sm font-mono w-1/2 sm:w-full '>{e.id}</div>
+                                    <div className='text-blue-500 text-sm font-mono w-1/2 sm:w-full '>
+                                     <Link to='/admin/requests/id'> {e.id}</Link>
+                                    </div>
                                     {/* request product and brand */}
                                     <div className=''>
                                         <div className='text-black text-sm font-semibold w-1/2 sm:w-full'>{e.product}</div>

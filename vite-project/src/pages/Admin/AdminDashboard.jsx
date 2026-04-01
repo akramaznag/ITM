@@ -64,7 +64,7 @@ export default function AdminDashboard() {
         {/* requests analytics section */}
         <div className='w-full flex flex-col lg:flex-row items-start lg:gap-x-4 gap-y-4'>
             {/* Recent requests table */}
-            <div   className='w-full lg:w-[67%] h-auto lg:h-88 overflow-x-scroll md:overflow-x-hidden bg-white border border-gray-200 rounded-xl shadow-sm'>
+            <div   className='w-full lg:w-[67%] h-auto  overflow-x-scroll md:overflow-x-hidden bg-white border border-gray-200 rounded-xl shadow-sm'>
                 <div className="min-w-[500px]">
 
                         {/* header */}
@@ -81,7 +81,7 @@ export default function AdminDashboard() {
                             
                         </div>
                         {/* data */}
-                        <div className='px-3 py-2 md:px-4 md:py-3 grid grid-cols-[10%_20%_20%_20%_20%] sm:grid-cols-[20%_20%_20%_20%_20%] lg:grid-cols-[120px_2fr_1.5fr_1fr_1fr] items-center   border border-t-gray-200 border-b-gray-300'>
+                        <div className='px-3 py-2 md:px-4 md:py-3 grid grid-cols-[10%_20%_20%_20%_20%] sm:grid-cols-[20%_20%_20%_20%_20%] lg:grid-cols-[120px_2fr_1.5fr_1fr_1fr] items-center  outline-0 border-t  border-gray-200'>
                             
                             <div className='text-blue-500 text-sm font-mono w-1/2 sm:w-full'>REQ-01</div>
                             <div>

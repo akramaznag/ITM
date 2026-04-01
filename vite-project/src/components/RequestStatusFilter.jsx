@@ -21,7 +21,7 @@ export default function RequestStatusFilter() {
                  <span className='block capitalize'>{filterValue.value}</span>
                 </div>
                 {/*popup  */}
-                <div onMouseEnter={() => setIsHoveringList(true)} onMouseLeave={() => setIsHoveringList(false)} className={`${isFilteropened?'block':'hidden'} absolute top-12 right-0 w-30 md:w-38 lg:w-41 h-auto p-1 bg-white rounded-xl shadow-lg z-40 animate-in slide-in-from-top duration-300`}>
+                <div onMouseEnter={() => setIsHoveringList(true)} onMouseLeave={() => setIsHoveringList(false)} className={`${isFilteropened?'block':'hidden'} absolute top-12 right-0 w-32 md:w-38 lg:w-41 h-auto p-1 bg-white rounded-xl shadow-lg z-40 animate-in slide-in-from-top duration-300`}>
                     <div className='flex flex-col gap-y-2'>
                         <div className='flex flex-col gap-y-1'>
                             {

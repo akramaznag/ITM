@@ -1,5 +1,6 @@
 export const requestStatus=[  
         { status:"all",value:"All Status"},
+        { status:"on_going",value:"On Going"},
         { status:"opened",value:"opened"},
         { status:"solved",value:"solved"},
         { status:"canceled",value:"canceled"},
@@ -55,3 +56,22 @@ export const ColorsRendering = {
     }
   }
 };
+
+export const Calls= [
+  {
+    id:1,
+    type: "Rendez-vous",
+    phone: "+33 6 12 34 56 78",
+    date: "2026-03-19 10:30",
+    comment: "Client wants appointment for next week",
+    createdBy: "Admin User"
+  },
+  {
+    id:2,
+    type: "Immediate",
+    phone: "+33 6 12 34 56 78",
+    date: "2026-03-18 14:15",
+    comment: "Urgent screen issue, dispatched tech",
+    createdBy: "Admin User"
+  }
+];

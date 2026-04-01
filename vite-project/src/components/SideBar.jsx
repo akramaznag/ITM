@@ -28,39 +28,39 @@ export default function SideBar({isOpen}) {
             </div>
         </div>
         {/* user Role */}
-        <div className={`mb-3 `}>
-          <span className={`text-xs tracking-wide text-gray-600 font-bold  ${isOpen ? 'block':'invisible'}`}>ADMIN</span>
+        <div className={`mb-3 ${isOpen && 'px-2'}`}>
+          <span className={`text-xs tracking-wide text-gray-600 font-medium  ${isOpen ? 'block':'invisible'}`}>ADMIN</span>
         </div>
         <div className={` w-full h-screen flex flex-col items-center  ${!isOpen && 'md:relative md:top-20 md:right-21 md:gap-y-3'} gap-y-2`}>
           
-            <div className={`flex items-center  gap-x-2 w-full ${path==='/admin/dashboard'? 'bg-blue-500/10 ':'hover:bg-gray-500/20 group'}  rounded-md py-1 px-2 cursor-pointer`}>
+            <Link to={'/admin/dashboard'} className={`flex items-center  gap-x-2 w-full ${path==='/admin/dashboard'? 'bg-blue-500/10 ':'hover:bg-gray-500/20 group'}  rounded-md py-1 px-2 cursor-pointer`}>
               <LayoutDashboard className= {`${path==='/admin/dashboard'? 'text-blue-500 font-semibold':'text-[hsl(var(--light-gray))] group-hover:text-white'} w-4 h-4 `}/>
-              <Link to={'/admin/dashboard'} className={`text-sm  ${!isOpen && 'md:hidden'} ${path==='/admin/dashboard'? 'text-blue-500 font-semibold':'text-[hsl(var(--light-gray))] group-hover:text-white'} `}>Dashboard</Link>
-            </div>
+              <span  className={`text-md md:text-sm  ${!isOpen && 'md:hidden'} ${path==='/admin/dashboard'? 'text-blue-500 font-semibold':'text-[hsl(var(--light-gray))] group-hover:text-white'} `}>Dashboard</span>
+            </Link>
             {/*  */}
-            <div className={`flex items-center  gap-x-2 w-full ${path==='/admin/requests'? 'bg-blue-500/10 ':'hover:bg-gray-500/20 group'}  rounded-md py-1 px-2 cursor-pointer`}>
+            <Link to={'/admin/requests'} className={`flex items-center  gap-x-2 w-full ${path==='/admin/requests'? 'bg-blue-500/10 ':'hover:bg-gray-500/20 group'}  rounded-md py-1 px-2 cursor-pointer`}>
               <File className= {`${path==='/admin/requests'? 'text-blue-500 font-semibold':'text-[hsl(var(--light-gray))] group-hover:text-white'} w-4 h-4 `}/>
-              <Link to={'/admin/requests'} className={`text-sm  ${!isOpen && 'md:hidden'} ${path==='/admin/requests'? 'text-blue-500 font-semibold':'text-[hsl(var(--light-gray))] group-hover:text-white'} `}>Requests</Link>
-            </div>
+              <span  className={`text-md md:text-sm  ${!isOpen && 'md:hidden'} ${path==='/admin/requests'? 'text-blue-500 font-semibold':'text-[hsl(var(--light-gray))] group-hover:text-white'} `}>Requests</span>
+            </Link>
             {/*  */}
            <div className='flex items-center gap-x-2 w-full hover:bg-gray-500/20 group rounded-md py-1 px-2 cursor-pointer'>
               <Phone className='w-4 h-4 text-[hsl(var(--light-gray))] group-hover:text-white'/>
-              <span className={`text-sm  ${!isOpen && 'md:hidden'} text-[hsl(var(--light-gray))] group-hover:text-white`}>Calls</span>
+              <span className={`text-md md:text-sm  ${!isOpen && 'md:hidden'} text-[hsl(var(--light-gray))] group-hover:text-white`}>Calls</span>
             </div>
             {/*  */}
             <div className='flex items-center gap-x-2 w-full hover:bg-gray-500/20 group rounded-md py-1 px-2 cursor-pointer'>
               <Monitor className='w-4 h-4 text-[hsl(var(--light-gray))] group-hover:text-white'/>
-              <span className={`text-sm ${!isOpen && 'md:hidden'}  text-[hsl(var(--light-gray))] group-hover:text-white`}>products</span>
+              <span className={`text-md md:text-sm ${!isOpen && 'md:hidden'}  text-[hsl(var(--light-gray))] group-hover:text-white`}>products</span>
             </div>
             {/*  */}
             <div className='flex items-center gap-x-2 w-full hover:bg-gray-500/20 group rounded-md py-1 px-2 cursor-pointer'>
               <Wrench className='w-4 h-4 text-[hsl(var(--light-gray))] group-hover:text-white'/>
-              <span className= {` ${!isOpen && 'md:hidden'} text-sm  text-[hsl(var(--light-gray))] group-hover:text-white`}>Technicians</span>
+              <span className= {` ${!isOpen && 'md:hidden'} text-md md:text-sm  text-[hsl(var(--light-gray))] group-hover:text-white`}>Technicians</span>
             </div>
              {/*  */}
             <div className={`flex items-center  gap-x-2 w-full hover:bg-gray-500/20 group rounded-md py-1 px-2 cursor-pointer`}>
               <Settings className={` w-4 h-4 text-[hsl(var(--light-gray))] group-hover:text-white`}/>
-              <span className={` ${!isOpen && 'md:hidden'} text-sm  text-[hsl(var(--light-gray))] group-hover:text-white`}>Settings</span>
+              <span className={` ${!isOpen && 'md:hidden'} text-md md:text-sm  text-[hsl(var(--light-gray))] group-hover:text-white`}>Settings</span>
             </div>
         </div>
       </div>
