@@ -1,14 +1,24 @@
 import React, { useState } from 'react'
 import { CheckCircle, ChevronDown, CircleAlert, Clock, File, Monitor, Phone,Search,User,Settings,LogOut, Check, Eye, EyeIcon } from 'lucide-react'
 import { requestStatus } from '../staticData/staticData';
+import { useLocation } from 'react-router-dom';
 
 export default function RequestStatusFilter() {
+    const location = useLocation();
+    const isGetRequestPage = location.pathname.startsWith('/admin/requests/');
+
+    const filteredrequestStatus = isGetRequestPage  ? requestStatus.slice(1) : requestStatus;
+
+    const defaultStatus = isGetRequestPage ? 'on_going' : 'all';
+    const defaultValue = isGetRequestPage ? 'On Going' : 'All Status';
+
+
     const [isFilteropened,setisFilteropened] =useState(false)
     const [filterValue,setFilterValue]=useState({
-        status:'all',
-        value:'All Status'
+        status:defaultStatus,
+        value:defaultValue
     })
-    const [activeStatus, setActiveStatus] = useState('all');  
+    const [activeStatus, setActiveStatus] = useState(defaultStatus);  
     const [isHoveringList, setIsHoveringList] = useState(false); 
     console.log('is active :',activeStatus)
     
@@ -25,7 +35,7 @@ export default function RequestStatusFilter() {
                     <div className='flex flex-col gap-y-2'>
                         <div className='flex flex-col gap-y-1'>
                             {
-                                    requestStatus.length > 0 ? requestStatus.map(e => {
+                                    filteredrequestStatus.length > 0 ? filteredrequestStatus.map(e => {
                                         const isActiveItem = activeStatus === e.status && !isHoveringList;
                                         return (
                                                     <div key={e.status}  onClick={() => { setFilterValue({status: e.status, value: e.value});  setActiveStatus(e.status); setisFilteropened(false); }}
