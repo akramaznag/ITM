@@ -81,7 +81,7 @@ export default function AdminRequests() {
                             const paymentStyle = ColorsRendering.payment[e.payment];
                             return (
 
-                                <div className='min-w-[650px] sm:w-full  md:w-full px-3 py-2 md:px-4 md:py-3 grid grid-cols-[0.8fr_1.2fr_0.8fr_2fr_1.2fr_1.5fr_1fr_0.5fr] md:grid-cols-[0.8fr_1.2fr_1fr_1.5fr_1fr_1.5fr_1fr_0.5fr] items-center    border border-t-gray-200 border-b-gray-300 '>
+                                <div className='min-w-[650px] sm:w-full  md:w-full px-3 py-2 md:px-4 md:py-3 grid grid-cols-[0.8fr_1.2fr_0.8fr_2fr_1.2fr_1.5fr_1fr_0.5fr] md:grid-cols-[0.8fr_1.2fr_1fr_1.5fr_1fr_1.5fr_1fr_0.5fr] items-center  border-t border-t-gray-200  '>
                                     {/* request ID */}
                                     <div className='text-blue-500 text-sm font-mono w-1/2 sm:w-full '>
                                      <Link to='/admin/requests/id'> {e.id}</Link>
