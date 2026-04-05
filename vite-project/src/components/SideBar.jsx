@@ -57,6 +57,11 @@ export default function SideBar({isOpen}) {
               <Wrench className= {`${path.startsWith("/admin/technicians")  ? 'text-blue-500 font-semibold':'text-[hsl(var(--light-gray))] group-hover:text-white'} w-4 h-4 `}/>
               <span  className={`text-md md:text-sm  ${!isOpen && 'md:hidden'} ${path.startsWith("/admin/technicians")  ? 'text-blue-500 font-semibold':'text-[hsl(var(--light-gray))] group-hover:text-white'} `}>Technicians</span>
             </Link>
+              {/*  */}
+             <Link to={'/admin/clients'} className={`flex items-center  gap-x-2 w-full ${path.startsWith("/admin/clients") ? 'bg-blue-500/10 ':'hover:bg-gray-500/20 group'}  rounded-md py-1 px-2 cursor-pointer`}>
+              <Users className= {`${path.startsWith("/admin/clients")  ? 'text-blue-500 font-semibold':'text-[hsl(var(--light-gray))] group-hover:text-white'} w-4 h-4 `}/>
+              <span  className={`text-md md:text-sm  ${!isOpen && 'md:hidden'} ${path.startsWith("/admin/clients")  ? 'text-blue-500 font-semibold':'text-[hsl(var(--light-gray))] group-hover:text-white'} `}>Client</span>
+            </Link>
              {/*  */}
             <div className={`flex items-center  gap-x-2 w-full hover:bg-gray-500/20 group rounded-md py-1 px-2 cursor-pointer`}>
               <Settings className={` w-4 h-4 text-[hsl(var(--light-gray))] group-hover:text-white`}/>

@@ -5,6 +5,8 @@ import AdminRequests from "../pages/Admin/AdminRequests"
 import GetRequest from "../pages/Admin/GetRequest";
 import Technicians from "../pages/Admin/Technicians";
 import GetTechnecian from "../pages/Admin/GetTechnecian";
+import Clients from "../pages/Admin/Clients";
+import GetClient from "../pages/Admin/getClient";
 
 const router = createBrowserRouter([
   // Landing page
@@ -43,10 +45,18 @@ const router = createBrowserRouter([
         path:"technicians",
         element:<Technicians/>
       },
-        {
+      {
         path:"technicians/:id",
         element:<GetTechnecian/>
-      }
+      },
+       {
+        path:"clients",
+        element:<Clients/>
+      },
+       {
+        path:"clients/:id",
+        element:<GetClient/>
+      },
 
     ],
   },

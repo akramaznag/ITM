@@ -1,57 +1,45 @@
 import React, { useState } from 'react'
 import { CheckCircle, Phone,ChevronDown, CircleAlert, Clock, File, Monitor,Search,User,Settings,LogOut, Check, Eye, EyeIcon, ArrowLeft, ChevronLast, ChevronLeft, ChevronRight, UserIcon, Users } from 'lucide-react'
-import { requestStatus, technicians, technicianStatus } from '../../staticData/staticData';
-import { requests } from '../../staticData/staticData';
-import { ColorsRendering } from '../../staticData/staticData';
+import { ColorsRendering,clients,technicianStatus } from '../../staticData/staticData';
 import { Link } from 'react-router-dom';
 import Pagination from '../../components/Pagination';
 import usePagination from '../../hooks/usePagination';
-import RequestStatusFilter from '../../components/RequestStatusFilter';
+
 import { Status } from '../../components/Status';
 
-export default function Technicians() {
+export default function Clients() {
 
     
     const [activeStatus, setActiveStatus] = useState("all");
     
-    const {currentPage,setCurrentPage,currentData,totalPages} = usePagination(technicians);
-
-    // const [searchValue,setSearchValue] = useState('')
-    // // obtain search value
-    // const handleChange = (e)=> setSearchValue(e.target.value);
-   
-
-    // const getRequestBySearch = currentData.find(e=>e.id === searchValue);
-
-    // const statusStyle = ColorsRendering.status[getRequestBySearch?.status] || null;
-    // const paymentStyle = ColorsRendering.payment[getRequestBySearch?.payment] || null;
+    const {currentPage,setCurrentPage,currentData,totalPages} = usePagination(clients);
 
 
     
   return (
        <>
-      {/*admin Requests */}   
+      {/*Admin Clients */}   
         <div className='mb-4 w-full flex justify-between'>
             <div className=''>
-                <h1 className='font-bold text-2xl text-black'>Technicians</h1>
-                <p className='text-gray-600 text-sm'>Manage your technician team</p>
+                <h1 className='font-bold text-2xl text-black'>Clients</h1>
+                <p className='text-gray-600 text-sm'>Manage your Clients</p>
             </div>
             <div className='bg-blue-100/90 text-blue-600 cursor-pointer flex items-center justify-center  rounded-xl h-9 px-4'>
                 <div className='capitalize  flex items-center gap-x-2'>
                     <Users className='w-5 h-5 font-semibold '/>
-                    <div className='text-sm font-semibold capitalize'>6 Technicians</div>
+                    <div className='text-sm font-semibold capitalize'>6 Clients</div>
                  </div>
             </div>
         </div>
         
-        {/* Technicians data */}
+        {/* Clients data */}
        <div className="text-black bg-white  outline-0 border  border-gray-200  rounded-xl    h-auto flex flex-col slide-in-from-bottom duration-600">
        
                              {/* Call information heading */}
                                <div className='px-4 py-5 flex justify-between items-center'>
                                    <div className='flex items-center justify-start'>
                                    
-                                     <h1 className='font-semibold'>All Technicians</h1>
+                                     <h1 className='font-semibold capitalize'>All Clients</h1>
                                    </div>
                                    <button className='bg-slate-100  border border-gray-400/30 hover:bg-[hsl(var(--accent))] group duration-200 cursor-pointer flex items-center justify-center  rounded-xl h-9 px-3 w-fit '>
                                          <div className='capitalize  flex items-center gap-x-2 group-hover:text-white'>
@@ -66,37 +54,42 @@ export default function Technicians() {
                                  <div className='min-w-[500px] md:min-w-0'>
        
                                      {/* columns */}
-                                     <div className='w-full px-3 bg-slate-100 outline-0 border-y  border-gray-200 h-13  grid grid-cols-[1fr_1fr_1fr_1fr] items-center gap-x-3 md:gap-x-0'>
-                                         <span className='text-gray-500 text-xs font-semibold '>Technician ID</span>
-                                         <span className='text-gray-500 text-xs font-semibold '>Full Name </span>
-                                         <span className='text-gray-500 text-xs font-semibold '>Username</span>
-                                         <span className='text-gray-500 text-xs font-semibold '>Status</span>
+                                     <div className='w-full px-3 bg-slate-100 outline-0 border-y  border-gray-200 h-13  grid grid-cols-[1fr_1fr_1fr_1.5fr_1fr] items-center gap-x-3 md:gap-x-0'>
+                                         <span className='text-gray-500 text-xs font-semibold '>Client ID</span>
+                                         <span className='text-gray-500 text-xs font-semibold '>First Name </span>
+                                         <span className='text-gray-500 text-xs font-semibold '>Last Name</span>
+                                         <span className='text-gray-500 text-xs font-semibold '>Email</span>
+                                         <span className='text-gray-500 text-xs font-semibold '>status</span>
                                      </div>
                                      {/* data */}
                                      {
                                          currentData.map((e,index)=>{
                                             const statusStyle = ColorsRendering.technician[e.status];
-                                            const technicianObj = technicianStatus.find(item=>item.status===e.status);
-                                            const technicianStatusValue=technicianObj ? technicianObj.value : e.status;
+                                            const clientObj = technicianStatus.find(item=>item.status===e.status);
+                                            const clientStatusValue=clientObj ? clientObj.value : e.status;
 
                                             
                                            
                                              return (
                                                 <Link to={'/admin/technicians/1'}>
-                                                 <div className='px-3 py-3 min-h-13  grid grid-cols-[1fr_1fr_1fr_1fr] items-center outline-0 border-t  border-gray-200 gap-x-3 md:gap-x-0 hover:bg-slate-100  hover:cursor-pointer'>
-                                                     {/* Technician ID*/}
+                                                 <div className='px-3 py-3 min-h-13  grid grid-cols-[1fr_1fr_1fr_1.5fr_1fr] items-center outline-0 border-t  border-gray-200 gap-x-3 md:gap-x-0 hover:bg-slate-100  hover:cursor-pointer'>
+                                                     {/* Client ID*/}
                                                      
                                                      <div className='text-blue-600 text-sm font-mono w-1/2 sm:w-full '>
                                                          <Link to='/admin/requests/id'> {e.id}</Link>
                                                       </div>
                                                      {/* Full Name */}
                                                    
-                                                     <div className='text-black text-sm font-semibold w-1/2 sm:w-full'>{e.fullName}</div>
+                                                     <div className='text-black text-sm font-semibold w-1/2 sm:w-full'>{e.firstName}</div>
                                                    
-                                                     {/* Username */}
-                                                     <div className='text-gray-500 text-sm  w-[60%]  '>{e.username}</div>
+                                                     {/* Last Name */}
+                                                     <div className='text-gray-500 text-sm  w-[60%]  '>{e.lastName}</div>
+                                                     {/* email */}
+
+
+                                                     <div className='text-gray-500 text-sm  w-[60%]  '>{e.email}</div>
                                                      {/* Status */}
-                                                     <Status bgColor={statusStyle.bg} textColor={statusStyle.text} dotColor={statusStyle.dot} content={technicianStatusValue}/>
+                                                     <Status bgColor={statusStyle.bg} textColor={statusStyle.text} dotColor={statusStyle.dot} content={clientStatusValue}/>
        
                                                       {/* Call Details info Saved Bay */}
        

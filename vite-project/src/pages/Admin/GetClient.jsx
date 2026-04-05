@@ -4,9 +4,9 @@ import { Calls, requests, requestStatus, technicianStatus } from '../../staticDa
 import { Link, useOutletContext } from "react-router-dom";
 import { NotRequestedStatus, OpenedStatus, Status } from '../../components/Status';
 import { ColorsRendering } from '../../staticData/staticData';
-import { UserDetailsCard} from '../../components/Cards';
+import { UserDetailsCard } from '../../components/Cards';
 
-export default function GetTechnecian() {
+export default function GetClient() {
 
   const { isSidebarOpened } = useOutletContext();
   console.log('this is from GetRequest.jsx ',isSidebarOpened)
@@ -22,7 +22,7 @@ export default function GetTechnecian() {
                     <div className='p-2 md:p-3 rounded-lg flex items-center  gap-x-3 w-fit hover:bg-[hsl(var(--accent))] group duration-200'>
                         <ArrowLeft className='text-gray-500  w-4 h-4  group-hover:text-white'/>
                         <div className='text-gray-500 text-sm font-semibold  group-hover:text-white'>
-                            Back to Technicians
+                            Back to Clients
                         </div>
                     </div>
                     
@@ -36,56 +36,63 @@ export default function GetTechnecian() {
                 <div className='mb-4 flex   flex-col  gap-y-5 w-full '>
 
                     <UserDetailsCard>
-                        <div className='flex justify-between items-center p-2'>
-                            <h1 className='font-semibold'>Technician Profile</h1>
-                            <Status bgColor={ColorsRendering.technician.active.bg} textColor={ColorsRendering.technician.active.text} dotColor={ColorsRendering.technician.active.dot} content={"Active"}/>
-                        </div>
+                         <div className='flex items-center justify-start gap-x-2  p-3 rounded-xl'>
+                                 <div className='w-15 h-15 bg-blue-100 flex items-center justify-center rounded-full'>
+                                    <div className='text-xl font-bold text-[hsl(210,100%,45%)]'>AM</div>                              
+                                 </div>
+
+                                <div className='flex flex-col '>
+                                    <div className='capitalize font-bold text-2xl'>Ahmed Benali</div>
+                                    <div className='text-gray-500 text-sm  capitalize font-normal'>client account</div>
+
+                                </div>
+                            </div>
 
                         <div className='grid grid-cols-1   sm:grid-cols-2 lg:grid-cols-[1fr_1fr_1fr_1fr] gap-y-4 sm:gap-3  p-2'>
 
 
-                            <div className='flex items-center gap-x-2'>
+                            <div className='flex items-center justify-start gap-x-2 bg-gray-100 p-3 rounded-xl'>
                                  <div className='p-2.5 bg-blue-100 flex items-start justify-center rounded-xl'>
                                     <User className='w-4 h-4 text-[hsl(210,100%,45%)]'/>                              
                                  </div>
 
-                                <div className='flex flex-col gap-y-1'>
+                                <div className='flex flex-col '>
                                     <div className='text-gray-500 text-xs  capitalize font-semibold'>Full Name</div>
                                     <div className='capitalize font-semibold text-sm'>Ahmed Benali</div>
 
                                 </div>
                             </div>
                             {/*  */}
-                            <div className='flex items-center gap-x-2'>
+                            <div className='flex items-center justify-start  gap-x-2 bg-gray-100 p-3 rounded-xl'>
                                  <div className='p-2.5 bg-blue-100 flex items-start justify-center rounded-xl'>
                                     <AtSign className='w-4 h-4 text-[hsl(210,100%,45%)]'/>                              
                                  </div>
 
-                                <div className='flex flex-col gap-y-1'>
+                                <div className='flex flex-col '>
                                     <div className='text-gray-500 text-xs  capitalize font-semibold'>Username</div>
                                     <div className='capitalize font-semibold text-sm'>ABENALI</div>
 
                                 </div>
                             </div>
                             {/*  */}
-                            <div className='flex items-center gap-x-2'>
+                            <div className='flex items-center justify-start  gap-x-2 bg-gray-100 p-3 rounded-xl'>
                                  <div className='p-2.5 bg-blue-100 flex items-start justify-center rounded-xl'>
                                     <Mail className='w-4 h-4 text-[hsl(210,100%,45%)]'/>                              
                                  </div>
 
-                                <div className='flex flex-col gap-y-1'>
+                                <div className='flex flex-col '>
                                     <div className='text-gray-500 text-xs  capitalize font-semibold'>Email</div>
                                     <div className='capitalize font-semibold text-sm'>ahmed@email.com</div>
 
                                 </div>
                             </div>
                             {/*  */}
-                             <div className='flex items-center gap-x-2'>
+                             <div className='flex items-center justify-start gap-x-2 bg-gray-100 p-3 rounded-xl'>
                                  <div className='p-2.5 bg-blue-100 flex items-start justify-center rounded-xl'>
                                     <Phone className='w-4 h-4 text-[hsl(210,100%,45%)]'/>                              
                                  </div>
 
-                                <div className='flex flex-col gap-y-1'>
+                                <div className='flex flex-col '>
                                     <div className='text-gray-500 text-xs  capitalize font-semibold'>Phone</div>
                                     <div className='capitalize font-semibold text-sm'>06 74 33 65 43</div>
 
@@ -94,25 +101,7 @@ export default function GetTechnecian() {
                          
 
                         </div>
-                        <div className="w-full flex items-center justify-center gap-x-3">
-                                <div className={`bg-slate-100 rounded-xl w-[33.33%] h-30 flex flex-col gap-y-2 justify-center items-center`}>
-                                    <FileText className='w-5 h-5 text-blue-600'/>
-                                    <div className='font-bold text-2xl'>6</div>
-                                    <div className='capitalize text-xs text-slate-500'>Assigned</div>
-                                </div>
-                                {/*  */}
-                                <div className={`bg-slate-100 rounded-xl w-[33.33%] h-30 flex flex-col gap-y-2 justify-center items-center`}>
-                                    <CheckCircle className='w-5 h-5 text-green-600'/>
-                                    <div className='font-bold text-2xl'>24</div>
-                                    <div className='capitalize text-xs text-slate-500'>resolved</div>
-                                </div>
-                                {/*  */}
-                                <div className={`bg-slate-100 rounded-xl w-[33.33%] h-30 flex flex-col gap-y-2 justify-center items-center`}>
-                                    <CheckCircle className='w-5 h-5 text-red-600'/>
-                                    <div className='font-bold text-2xl'>6</div>
-                                    <div className='capitalize text-xs text-slate-500'>canceled</div>
-                                </div>
-                        </div>
+                    
                     </UserDetailsCard>
 
                    
