@@ -14,7 +14,7 @@ export default function AdminDashboard() {
         {/* cards  */}
         <div className="mb-5 w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {/* card compenent */}
-            <div className="bg-white outline-0 border border-gray-200 rounded-xl shadow-sm  px-4 py-5 h-30 flex justify-between">
+            <div className="bg-white outline-0 border border-gray-200 rounded-xl shadow-sm  px-4 py-5 h-30 flex justify-between slide-in-from-bottom duration-300">
                 <div className="flex flex-col items-start gap-y-2 ">
                     <div className='text-sm text-gray-600'>Total Requests</div>
                     <div className='text-black font-bold text-2xl'>142</div>
@@ -26,7 +26,7 @@ export default function AdminDashboard() {
 
             </div>
             {/* card compenent */}
-            <div className="bg-white  outline-0  border border-gray-200 rounded-xl shadow-sm px-4 py-5 h-30 flex justify-between">
+            <div className="bg-white  outline-0  border border-gray-200 rounded-xl shadow-sm px-4 py-5 h-30 flex justify-between slide-in-from-bottom duration-300">
                 <div className="flex flex-col items-start gap-y-2 ">
                     <div className='text-sm text-gray-600'>Active Products</div>
                     <div className='text-black font-bold text-2xl'>89</div>
@@ -38,7 +38,7 @@ export default function AdminDashboard() {
 
             </div>
             {/* card compenent */}
-            <div className="bg-white  outline-0 border border-gray-200 rounded-xl shadow-sm  px-4 py-5 h-30 flex justify-between">
+            <div className="bg-white  outline-0 border border-gray-200 rounded-xl shadow-sm  px-4 py-5 h-30 flex justify-between slide-in-from-bottom duration-300">
                 <div className="flex flex-col items-start gap-y-2 ">
                     <div className='text-sm text-gray-600'>Calls Today</div>
                     <div className='text-black font-bold text-2xl'>8</div>
@@ -49,7 +49,7 @@ export default function AdminDashboard() {
                 </div>
 
             </div>{/* card compenent */}
-            <div className="bg-white  outline-0 border  border-gray-200 rounded-xl shadow-sm  px-4 py-5 h-30 flex justify-between">
+            <div className="bg-white  outline-0 border  border-gray-200 rounded-xl shadow-sm  px-4 py-5 h-30 flex justify-between slide-in-from-bottom duration-300">
                 <div className="flex flex-col items-start gap-y-2 ">
                     <div className='text-sm text-gray-600'>Resolved</div>
                     <div className='text-black font-bold text-2xl'>118</div>
@@ -62,9 +62,9 @@ export default function AdminDashboard() {
             </div>
         </div>
         {/* requests analytics section */}
-        <div className='w-full flex flex-col lg:flex-row items-start lg:gap-x-4 gap-y-4'>
+        <div className='w-full flex flex-col lg:flex-row items-start lg:gap-x-4 gap-y-4 '>
             {/* Recent requests table */}
-            <div   className='w-full lg:w-[67%] h-auto  overflow-x-scroll md:overflow-x-hidden bg-white border border-gray-200 rounded-xl shadow-sm'>
+            <div   className='w-full lg:w-[67%] h-auto  overflow-x-scroll md:overflow-x-hidden bg-white border border-gray-200 rounded-xl shadow-sm slide-in-from-bottom  duration-800'>
                 <div className="min-w-[500px]">
 
                         {/* header */}
@@ -138,7 +138,7 @@ export default function AdminDashboard() {
             </div>
             {/* ------------------------- */}
             {/* Request Statuses */}
-             <div className='w-full lg:w-[33%] h-auto lg:h-88  px-4 py-5 bg-white outline-0 border border-gray-200 rounded-xl shadow-sm '>
+             <div className='w-full lg:w-[33%] h-auto lg:h-88  px-4 py-5 bg-white outline-0 border border-gray-200 rounded-xl shadow-sm slide-in-from-bottom duration-1000'>
                 {/* header */}
                 <div className=' text-black font-medium mb-5'>
                     Request Status

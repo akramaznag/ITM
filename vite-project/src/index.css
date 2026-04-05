@@ -5,6 +5,9 @@
   --accent: 168 70% 42%;
 }
 @layer utilities{
+    .ease-in {
+        animation-timing-function: ease-in;
+    }
     .animate-in{
         animation-fill-mode: both;
     }
@@ -27,8 +30,14 @@
     .duration-600{
         animation-duration: 600ms;
     }
+     .duration-800{
+        animation-duration: 800ms;
+    }
      .duration-200{
         animation-duration: 200ms;
+    }
+     .duration-1000{
+        animation-duration: 1s;
     }
     
     

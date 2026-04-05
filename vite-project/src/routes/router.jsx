@@ -3,6 +3,8 @@ import DashboardLayout from "../components/DashboardLayout";
 import AdminDashboard from "../pages/Admin/AdminDashboard";
 import AdminRequests from "../pages/Admin/AdminRequests"
 import GetRequest from "../pages/Admin/GetRequest";
+import Technicians from "../pages/Admin/Technicians";
+import GetTechnecian from "../pages/Admin/GetTechnecian";
 
 const router = createBrowserRouter([
   // Landing page
@@ -36,6 +38,14 @@ const router = createBrowserRouter([
       {
         path:"requests/:id",
         element:<GetRequest/>
+      },
+      {
+        path:"technicians",
+        element:<Technicians/>
+      },
+        {
+        path:"technicians/:id",
+        element:<GetTechnecian/>
       }
 
     ],

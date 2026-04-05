@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { CheckCircle, ChevronDown, CircleAlert, Clock, File, Monitor, Phone,Search,User,Settings,LogOut, Check, Eye, EyeIcon, ArrowLeft, ChevronLast, ChevronLeft, ChevronRight } from 'lucide-react'
-import { requestStatus } from '../../staticData/staticData';
+import { paymentStatus, requestStatus } from '../../staticData/staticData';
 import { requests } from '../../staticData/staticData';
 import { ColorsRendering } from '../../staticData/staticData';
 import { Link } from 'react-router-dom';
 import Pagination from '../../components/Pagination';
 import usePagination from '../../hooks/usePagination';
 import RequestStatusFilter from '../../components/RequestStatusFilter';
+import {Status} from '../../components/Status';
 
 export default function AdminRequests() {
 
@@ -56,7 +57,7 @@ export default function AdminRequests() {
            
         </div>
         {/* requests analytics section */}
-        <div   className='w-full  h-auto overflow-x-auto md:overflow-x-hidden bg-white border border-gray-200 rounded-xl'>
+        <div   className='w-full  h-auto overflow-x-auto md:overflow-x-hidden bg-white border border-gray-200 rounded-xl slide-in-from-bottom duration-600'>
                
                     {/* columns */}
                     <div className='min-w-[650px] sm:w-full md:w-full px-3 h-13 md:px-4 md:py-3 grid grid-cols-[0.8fr_1.2fr_0.8fr_2fr_1.2fr_1.5fr_1fr_0.5fr] md:grid-cols-[0.8fr_1.2fr_1fr_1.5fr_1fr_1.5fr_1fr_0.5fr] items-center border border-t-gray-200 border-b-gray-300 '>
@@ -79,6 +80,11 @@ export default function AdminRequests() {
                         currentData.map((e,index)=>{
                             const statusStyle = ColorsRendering.status[e.status];
                             const paymentStyle = ColorsRendering.payment[e.payment];
+                            const statusObj = requestStatus.find(item=>item.status===e.status);
+                            const paymentObj = paymentStatus.find(item=>item.status===e.payment);
+                            const statusValue=statusObj ? statusObj.value : e.status;
+                            const paymentValue=paymentObj ? paymentObj.value : e.payment;
+                            
                             return (
 
                                 <div className='min-w-[650px] sm:w-full  md:w-full px-3 py-2 md:px-4 md:py-3 grid grid-cols-[0.8fr_1.2fr_0.8fr_2fr_1.2fr_1.5fr_1fr_0.5fr] md:grid-cols-[0.8fr_1.2fr_1fr_1.5fr_1fr_1.5fr_1fr_0.5fr] items-center  border-t border-t-gray-200  '>
@@ -99,16 +105,11 @@ export default function AdminRequests() {
                                     <div className='text-gray-900 text-sm  w-full '>{e.issue}</div>
                                     {/* Request Status (opened,on going ,solved ,canceled) */}
 
-                                    <div className={`flex ${ statusStyle.bg} px-2  h-5 rounded-xl text-xs ${statusStyle.text} font-semibold w-fit gap-x-2 items-center justify-center`}>
-                                        <span className={`block h-[7px] w-[7px] rounded-full ${statusStyle.dot}`}/>
-                                        <span className='block'>{e.status}</span>
-                                    </div>
+                                    <Status bgColor={statusStyle.bg} textColor={statusStyle.text} dotColor={statusStyle.dot} content={statusValue} />
                                     {/* Payment Status (paid,not requeted ,Requested) */}
 
-                                    <div className={`flex ${ paymentStyle.bg} px-2  h-5 rounded-xl text-xs ${ paymentStyle.text} font-semibold w-fit gap-x-2 items-center justify-center`}>
-                                        <span className={`block h-[7px] w-[7px] rounded-full ${ paymentStyle.dot}`}/>
-                                        <span className='block'>{e.payment}</span>
-                                    </div>
+                                    <Status bgColor={paymentStyle.bg} textColor={paymentStyle.text} dotColor={paymentStyle.dot} content={paymentValue} />
+                                     
                                     <div className='text-gray-500 text-sm font-semibold  w-1/2 sm:w-full'>{e.date}</div>
                                      
                                     <Link to={'/admin/requests/1'} className=' p-2 rounded-lg flex items-center justify-center justify-self-end w-fit hover:bg-[hsl(var(--accent))] group duration-200'>

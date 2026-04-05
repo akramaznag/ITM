@@ -17,3 +17,14 @@ export const NotRequestedStatus=()=>{
     </div>
     )
 }
+
+export const Status=({bgColor,dotColor,textColor,content})=>{
+    return(
+
+     <div className={`flex ${bgColor} px-2  h-5 rounded-xl text-xs ${textColor} font-semibold w-fit gap-x-2 items-center justify-center`}>
+        <span className={`block h-[7px] w-[7px] rounded-full ${dotColor}`}></span>
+        <span className='block font-semibold'>{content}</span>                           
+    </div>
+    )
+}
+

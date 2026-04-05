@@ -5,8 +5,8 @@ import { requests } from '../../staticData/staticData';
 import { ColorsRendering } from '../../staticData/staticData';
 import RequestStatusFilter from '../../components/RequestStatusFilter';
 import { useOutletContext } from "react-router-dom";
-import RequestDetailsCard from '../../components/RequestDetailsCard';
-import { NotRequestedStatus, OpenedStatus } from '../../components/RequestStatus';
+import { NotRequestedStatus, OpenedStatus } from '../../components/Status';
+import {RequestDetailsCard} from '../../components/Cards';
 
 export default function GetRequest() {
 
