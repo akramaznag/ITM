@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { CheckCircle, Phone,ChevronDown, CircleAlert, Clock, File, Monitor,Search,User,Settings,LogOut, Check, Eye, EyeIcon, ArrowLeft, ChevronLast, ChevronLeft, ChevronRight, UserIcon, Users } from 'lucide-react'
 import { ColorsRendering,clients,technicianStatus } from '../../staticData/staticData';
-import { Link } from 'react-router-dom';
+import { Link, useOutletContext } from 'react-router-dom';
 import Pagination from '../../components/Pagination';
 import usePagination from '../../hooks/usePagination';
 
 import { Status } from '../../components/Status';
+import FindClientForm from '../../components/FindClientForm';
 
 export default function Clients() {
 
@@ -13,6 +14,8 @@ export default function Clients() {
     const [activeStatus, setActiveStatus] = useState("all");
     
     const {currentPage,setCurrentPage,currentData,totalPages} = usePagination(clients);
+    const { setPopupContent } = useOutletContext();
+
 
 
     
@@ -41,7 +44,7 @@ export default function Clients() {
                                    
                                      <h1 className='font-semibold capitalize'>All Clients</h1>
                                    </div>
-                                   <button className='bg-slate-100  border border-gray-400/30 hover:bg-[hsl(var(--accent))] group duration-200 cursor-pointer flex items-center justify-center  rounded-xl h-9 px-3 w-fit '>
+                                   <button  onClick={()=>setPopupContent(<FindClientForm/>)} className='bg-slate-100  border border-gray-400/30 hover:bg-[hsl(var(--accent))] group duration-200 cursor-pointer flex items-center justify-center  rounded-xl h-9 px-3 w-fit '>
                                          <div className='capitalize  flex items-center gap-x-2 group-hover:text-white'>
                                              <Search className='w-4 h-4 font-light relative '/>
                                              <div className='text-sm font-semibold capitalize'>Find</div>
@@ -112,7 +115,9 @@ export default function Clients() {
                                </div>
        
                              
-                           </div>
+       </div>
+
+     
            
          
 

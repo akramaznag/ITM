@@ -7,12 +7,25 @@ import Technicians from "../pages/Admin/Technicians";
 import GetTechnecian from "../pages/Admin/GetTechnecian";
 import Clients from "../pages/Admin/Clients";
 import GetClient from "../pages/Admin/getClient";
+import Login from "../pages/Auth/Login";
+import Register from "../pages/Auth/Register";
 
 const router = createBrowserRouter([
   // Landing page
   {
     path: "/",
     element: <h1>Landing page coming soon ...</h1>,
+  },
+  //Auth Routes
+  {
+    path:"auth/login",
+    element:<Login/>
+
+  },
+    {
+    path:"auth/register",
+    element:<Register/>
+
   },
 
   // Admin routes

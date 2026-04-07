@@ -2,10 +2,10 @@ import { CheckCircle, CircleAlert, Clock, File, Monitor, Phone } from 'lucide-re
 import React from 'react';
 import {Outlet} from 'react-router-dom'
 
-export default function Body({ isSidebarOpened }) {
+export default function Body({ isSidebarOpened,setPopupContent }) {
   return (
     <div className='bg-red min-h-auto w-full px-6 py-8'>
-         <Outlet context={{ isSidebarOpened }}/>
+         <Outlet context={{ isSidebarOpened , setPopupContent}}/>
     </div>
   )
 }

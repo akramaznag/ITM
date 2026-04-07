@@ -8,7 +8,7 @@ export default function SideBar({isOpen}) {
   
     console.log(isOpen)
   return (
-    <div className={`w-0 md:block min-h-screen z-50 md:z-0 fixed top-0 left-0 md:static transform transition-[width,transform] duration-500
+    <div className={`w-0 md:block min-h-screen z-30 md:z-0 fixed top-0 left-0 md:static transform transition-[width,transform] duration-500
     ${isOpen? 'w-[60%] md:w-[44%] lg:w-[25%]  slide-in-from-left' 
     :' md:w-[7%] lg:w-[4%] slide-in-from-right '} bg-slate-900`}>
 
