@@ -1,12 +1,26 @@
 import { useState } from "react";
-import Header from "./Header"
-import SideBar from "./SideBar";
-import Body from "./Body";
-import Popup from "./Popup";
+import Header from "../Layouts/Header"
+import SideBar from "../Layouts/SideBar";
+import Body from "../Layouts/Body";
+import Popup from "../UI/Popup";
+import { useEffect } from "react";
+import { jwtDecode } from "jwt-decode";
+import CheckTokenExpiration from "../../hooks/CheckTokenExpiration";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function DashboardLayout() {
+  //log out the user automatically after the token expiration
+  const token = useSelector(state=>state.auth.token);
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+    CheckTokenExpiration(token,dispatch)
+
+  },[token])
+  //
   const [isSidebarOpened,setisSidebarOpened] = useState(true);
   const [popupContent,setPopupContent] =useState(null);
+  const [notificationContent,setNotificationContent]=useState(null)
 
 
   return (
@@ -23,6 +37,7 @@ export default function DashboardLayout() {
        <Popup isOpen={popupContent} onClose={() => setPopupContent(null)}>
          {popupContent}
        </Popup>
+       
       
       <div className={`flex flex-col w-full z-10 ${popupContent && 'h-screen overflow-hidden' }`}>
 

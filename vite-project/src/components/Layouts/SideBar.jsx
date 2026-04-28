@@ -48,10 +48,10 @@ export default function SideBar({isOpen}) {
               <span className={`text-md md:text-sm  ${!isOpen && 'md:hidden'} text-[hsl(var(--light-gray))] group-hover:text-white`}>Calls</span>
             </div>
             {/*  */}
-            <div className='flex items-center gap-x-2 w-full hover:bg-gray-500/20 group rounded-md py-1 px-2 cursor-pointer'>
-              <Monitor className='w-4 h-4 text-[hsl(var(--light-gray))] group-hover:text-white'/>
-              <span className={`text-md md:text-sm ${!isOpen && 'md:hidden'}  text-[hsl(var(--light-gray))] group-hover:text-white`}>products</span>
-            </div>
+            <Link to={'/admin/products'} className={`flex items-center  gap-x-2 w-full ${path.startsWith("/admin/products") ? 'bg-blue-500/10 ':'hover:bg-gray-500/20 group'}  rounded-md py-1 px-2 cursor-pointer`}>
+              <Monitor className= {`${path.startsWith("/admin/products")  ? 'text-blue-500 font-semibold':'text-[hsl(var(--light-gray))] group-hover:text-white'} w-4 h-4 `}/>
+              <span  className={`text-md md:text-sm  ${!isOpen && 'md:hidden'} ${path.startsWith("/admin/products")  ? 'text-blue-500 font-semibold':'text-[hsl(var(--light-gray))] group-hover:text-white'} `}>Products</span>
+            </Link>
             {/*  */}
              <Link to={'/admin/technicians'} className={`flex items-center  gap-x-2 w-full ${path.startsWith("/admin/technicians") ? 'bg-blue-500/10 ':'hover:bg-gray-500/20 group'}  rounded-md py-1 px-2 cursor-pointer`}>
               <Wrench className= {`${path.startsWith("/admin/technicians")  ? 'text-blue-500 font-semibold':'text-[hsl(var(--light-gray))] group-hover:text-white'} w-4 h-4 `}/>
@@ -60,7 +60,7 @@ export default function SideBar({isOpen}) {
               {/*  */}
              <Link to={'/admin/clients'} className={`flex items-center  gap-x-2 w-full ${path.startsWith("/admin/clients") ? 'bg-blue-500/10 ':'hover:bg-gray-500/20 group'}  rounded-md py-1 px-2 cursor-pointer`}>
               <Users className= {`${path.startsWith("/admin/clients")  ? 'text-blue-500 font-semibold':'text-[hsl(var(--light-gray))] group-hover:text-white'} w-4 h-4 `}/>
-              <span  className={`text-md md:text-sm  ${!isOpen && 'md:hidden'} ${path.startsWith("/admin/clients")  ? 'text-blue-500 font-semibold':'text-[hsl(var(--light-gray))] group-hover:text-white'} `}>Client</span>
+              <span  className={`text-md md:text-sm  ${!isOpen && 'md:hidden'} ${path.startsWith("/admin/clients")  ? 'text-blue-500 font-semibold':'text-[hsl(var(--light-gray))] group-hover:text-white'} `}>Clients</span>
             </Link>
              {/*  */}
             <div className={`flex items-center  gap-x-2 w-full hover:bg-gray-500/20 group rounded-md py-1 px-2 cursor-pointer`}>

@@ -1,15 +1,35 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { CheckCircle, ChevronDown, CircleAlert, Clock, File, Monitor, Phone,Search,User,Settings,LogOut, Check, Eye, EyeIcon, ArrowLeft, CreditCard, Calendar, AtSign, Mail, FileText } from 'lucide-react'
-import { Calls, requests, requestStatus, technicianStatus } from '../../staticData/staticData';
-import { Link, useOutletContext } from "react-router-dom";
-import { NotRequestedStatus, OpenedStatus, Status } from '../../components/Status';
+import { Calls, requests, requestStatus, userStatus } from '../../staticData/staticData';
+import { Link, useOutletContext, useParams } from "react-router-dom";
+import { Status } from '../../components/UI/Status';
 import { ColorsRendering } from '../../staticData/staticData';
-import { UserDetailsCard} from '../../components/Cards';
+import { UserDetailsCard} from '../../components/UI/Cards';
+import { getTechnicianById } from '../../services/AdminServices/AdminServices';
+import { useSelector } from 'react-redux';
 
 export default function GetTechnecian() {
 
   const { isSidebarOpened } = useOutletContext();
-  console.log('this is from GetRequest.jsx ',isSidebarOpened)
+  const token = useSelector(state=>state.auth.token); 
+  const [technician,setTechnican] = useState({});
+  const {id} = useParams();
+  const getTechnecian = ()=>{
+    useEffect(()=>{
+
+        getTechnicianById(id,token).then(res=>{
+            setTechnican(res.data.technician)
+        }).catch(err=>console.log(err?.response?.data?.error))
+
+    },[])
+  }
+  getTechnecian()
+//   console.log('this is from GetRequest.jsx ',isSidebarOpened)
+  
+    const statusStyle = ColorsRendering.user[technician?.status] || {} ;
+    console.log(statusStyle)
+    const technicianObj = userStatus.find(item=>item.status===technician?.status ) ;
+    const userStatusValue=technicianObj ? technicianObj.value : technician?.status ;
 
 
    
@@ -38,7 +58,7 @@ export default function GetTechnecian() {
                     <UserDetailsCard>
                         <div className='flex justify-between items-center p-2'>
                             <h1 className='font-semibold'>Technician Profile</h1>
-                            <Status bgColor={ColorsRendering.technician.active.bg} textColor={ColorsRendering.technician.active.text} dotColor={ColorsRendering.technician.active.dot} content={"Active"}/>
+                            <Status bgColor={statusStyle.bg} textColor={statusStyle.text} dotColor={statusStyle.dot} content={"Active"}/>
                         </div>
 
                         <div className='grid grid-cols-1   sm:grid-cols-2 lg:grid-cols-[1fr_1fr_1fr_1fr] gap-y-4 sm:gap-3  p-2'>
@@ -51,7 +71,7 @@ export default function GetTechnecian() {
 
                                 <div className='flex flex-col gap-y-1'>
                                     <div className='text-gray-500 text-xs  capitalize font-semibold'>Full Name</div>
-                                    <div className='capitalize font-semibold text-sm'>Ahmed Benali</div>
+                                    <div className='capitalize font-semibold text-sm'>{`${technician.firstName} ${technician.lastName}`}</div>
 
                                 </div>
                             </div>
@@ -63,7 +83,7 @@ export default function GetTechnecian() {
 
                                 <div className='flex flex-col gap-y-1'>
                                     <div className='text-gray-500 text-xs  capitalize font-semibold'>Username</div>
-                                    <div className='capitalize font-semibold text-sm'>ABENALI</div>
+                                    <div className='capitalize font-semibold text-sm'>{technician.userName}</div>
 
                                 </div>
                             </div>
@@ -75,7 +95,7 @@ export default function GetTechnecian() {
 
                                 <div className='flex flex-col gap-y-1'>
                                     <div className='text-gray-500 text-xs  capitalize font-semibold'>Email</div>
-                                    <div className='capitalize font-semibold text-sm'>ahmed@email.com</div>
+                                    <div className='capitalize font-semibold text-sm'>{technician.email}</div>
 
                                 </div>
                             </div>
@@ -87,7 +107,7 @@ export default function GetTechnecian() {
 
                                 <div className='flex flex-col gap-y-1'>
                                     <div className='text-gray-500 text-xs  capitalize font-semibold'>Phone</div>
-                                    <div className='capitalize font-semibold text-sm'>06 74 33 65 43</div>
+                                    <div className='capitalize font-semibold text-sm'>{technician?.phone?.replace(/\D/g, "").match(/.{1,2}/g)?.join(" ")}</div>
 
                                 </div>
                             </div>

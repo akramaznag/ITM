@@ -1,15 +1,29 @@
-import { Search ,Bell,Menu, User, Settings, LogOut, Settings2} from 'lucide-react'
-import React, { useRef, useState } from 'react'
-import useClosePopup from '../hooks/useClosePopup'
+import { Search ,Bell,Menu, User, Settings, LogOut, Settings2} from 'lucide-react';
+import React, { useRef, useState } from 'react';
+import useClosePopup from '../../hooks/useClosePopup';
+import {logout} from '../../services/authServices/authService';
+import {logout as logoutAction}  from '../../redux/AuthSlice' 
+import {useNavigate} from 'react-router-dom'
+import {useDispatch} from 'react-redux'
 
 export default function Header({isOpen,toggleSideBar}) {
+    const navigate = useNavigate();
+    const dispatch = useDispatch()
     const [isDropdownPopupOpened,setisDropdownPopupOpened] =useState(false)
     const popupRef = useRef();
-    useClosePopup(popupRef,setisDropdownPopupOpened)
+    useClosePopup(popupRef,setisDropdownPopupOpened);
+    const logOut= ()=>{
+        logout().then(res=>{
+            console.log(res.data)
+            dispatch(logoutAction())
+            navigate('/auth/login')
+        }).catch(err=>console.log(err.response?.data))
+
+    }
         
 
   return (
-    <nav className={`sticky top-0 w-full  transition-all duration-500`}>
+    <nav className={`sticky top-0 w-full z-20 transition-all duration-500`}>
         <div className='h-14 px-10 bg-white flex items-center w-full' >
             <div className='w-full h-12 bg-white flex items-center justify-between'>
                 {/* search bar and side bar button */}
@@ -56,7 +70,7 @@ export default function Header({isOpen,toggleSideBar}) {
                                                 
                                             </div>
                                         {/* Logout container */}
-                                            <div className='border border-t-gray-300 pt-1'>
+                                            <div onClick={()=>logOut()} className='border border-t-gray-300 pt-1'>
                                                 <div className="flex gap-x-3 items-center p-2 hover:bg-red-200  rounded-xl transition-colors duration-200 ease-in-out">
                                                         <LogOut className='w-4 h-4 text-red-500 group-hover:text-white transition-colors duration-300 ease-in-out' />
                                                         <span className='text-sm text-red-500  transition-colors duration-300 ease-in-out cursor-pointer'>

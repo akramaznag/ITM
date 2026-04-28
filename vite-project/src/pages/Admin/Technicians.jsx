@@ -1,22 +1,58 @@
 import React, { useState } from 'react'
-import { CheckCircle, Phone,ChevronDown, CircleAlert, Clock, File, Monitor,Search,User,Settings,LogOut, Check, Eye, EyeIcon, ArrowLeft, ChevronLast, ChevronLeft, ChevronRight, UserIcon, Users } from 'lucide-react'
-import { requestStatus, technicians, technicianStatus } from '../../staticData/staticData';
-import { requests } from '../../staticData/staticData';
-import { ColorsRendering } from '../../staticData/staticData';
+import { CheckCircle, Phone,ChevronDown, CircleAlert, Clock, File, Monitor,Search,User,Settings,LogOut, Check, Eye, EyeIcon, ArrowLeft, ChevronLast, ChevronLeft, ChevronRight, UserIcon, Users, CaseLower } from 'lucide-react'
+import { userStatus , ColorsRendering} from '../../staticData/staticData';
 import { Link, useOutletContext } from 'react-router-dom';
-import Pagination from '../../components/Pagination';
+import Pagination from '../../components/UI/Pagination';
 import usePagination from '../../hooks/usePagination';
-import RequestStatusFilter from '../../components/RequestStatusFilter';
-import { Status } from '../../components/Status';
-import FindTechnicianForm from '../../components/FindTechnicianForm';
+import { Status } from '../../components/UI/Status';
+import FindTechnicianForm from '../../components/Forms/FindTechnicianForm';
+import { useEffect } from 'react';
+import { getTechnicians } from '../../services/AdminServices/AdminServices';
+import { useSelector} from 'react-redux';
+import Notification from '../../components/UI/Notification';
+import CreateButton from '../../components/UI/CreateButton';
+import AddTechnicianForm from '../../components/Forms/AddTechnicianForm';
+
+
 
 export default function Technicians() {
+
+    const token = useSelector(state=>state.auth.token);
+    const [notificationContent,setNotificationContent]=useState({
+          status:null,
+          message:null
+      
+    })
+    const [technicians,setTechnicians] =useState([]);
+    const [filteredTechnician,setfilteredTechnician] =useState({});
+    const fetchTechnicians =()=>{
+        useEffect(()=>{
+            getTechnicians(token).then(res=>{
+                console.log(res.data);
+                setTechnicians(res.data.data)
+        }).
+        catch(err=>{
+            console.log(err?.response?.data?.error || err.message)
+            setNotificationContent({
+               status: "danger", 
+               message: err?.response?.data?.error || err.message
+            })
+        });
+            
+        },[])
+    }
+    fetchTechnicians();
 
     
     const [activeStatus, setActiveStatus] = useState("all");
     
-    const {currentPage,setCurrentPage,currentData,totalPages} = usePagination(technicians);
+    const {currentPage,setCurrentPage,currentData,totalPages} = usePagination(technicians || []);
     const { setPopupContent } = useOutletContext();
+
+    const statusStyle = ColorsRendering.user[filteredTechnician.status];
+    const technicianObj = userStatus.find(item=>item.status===filteredTechnician.status);
+    const technicianStatusValue=technicianObj ? technicianObj.value : filteredTechnician.status;
+    
 
 
     // const [searchValue,setSearchValue] = useState('')
@@ -39,11 +75,16 @@ export default function Technicians() {
                 <h1 className='font-bold text-2xl text-black'>Technicians</h1>
                 <p className='text-gray-600 text-sm'>Manage your technician team</p>
             </div>
-            <div className='bg-blue-100/90 text-blue-600 cursor-pointer flex items-center justify-center  rounded-xl h-9 px-4'>
-                <div className='capitalize  flex items-center gap-x-2'>
-                    <Users className='w-5 h-5 font-semibold '/>
-                    <div className='text-sm font-semibold capitalize'>6 Technicians</div>
-                 </div>
+            <div className='flex flex-col gap-y-3 md:flex-row items-center gap-x-3'>
+                <div className='bg-blue-100/90 text-blue-600 cursor-pointer flex items-center justify-center  rounded-xl h-9 px-4'>
+                    <div className='capitalize  flex items-center gap-x-2'>
+                        <Users className='w-5 h-5 font-semibold '/>
+                        <div className='text-sm font-semibold capitalize'>{technicians.length || 0} Technicians</div>
+                    </div>
+                </div>
+                <CreateButton setPopupContent={setPopupContent}   popupContent = {<AddTechnicianForm onClose={setPopupContent} setNotificationContent={setNotificationContent}/>} text={'add technician'}/>
+                
+
             </div>
         </div>
         
@@ -56,7 +97,7 @@ export default function Technicians() {
                                    
                                      <h1 className='font-semibold'>All Technicians</h1>
                                    </div>
-                                   <button onClick={()=>setPopupContent(<FindTechnicianForm/>)}  className='bg-slate-100  border border-gray-400/30 hover:bg-[hsl(var(--accent))] group duration-200 cursor-pointer flex items-center justify-center  rounded-xl h-9 px-3 w-fit '>
+                                   <button onClick={()=>setPopupContent(<FindTechnicianForm onClose={setPopupContent} setNotificationContent={setNotificationContent} setfilteredTechnician={setfilteredTechnician} />)}  className='bg-slate-100  border border-gray-400/30 hover:bg-[hsl(var(--accent))] group duration-200 cursor-pointer flex items-center justify-center  rounded-xl h-9 px-3 w-fit '>
                                          <div className='capitalize  flex items-center gap-x-2 group-hover:text-white'>
                                              <Search className='w-4 h-4 font-light relative '/>
                                              <div className='text-sm font-semibold capitalize'>Find</div>
@@ -77,27 +118,21 @@ export default function Technicians() {
                                      </div>
                                      {/* data */}
                                      {
-                                         currentData.map((e,index)=>{
-                                            const statusStyle = ColorsRendering.technician[e.status];
-                                            const technicianObj = technicianStatus.find(item=>item.status===e.status);
-                                            const technicianStatusValue=technicianObj ? technicianObj.value : e.status;
-
-                                            
-                                           
-                                             return (
-                                                <Link to={'/admin/technicians/1'}>
+                                        Object.keys(filteredTechnician).length >0 ?
+                                         <>
+                                                <Link to={`/admin/technicians/${filteredTechnician.id}`} >
                                                  <div className='px-3 py-3 min-h-13  grid grid-cols-[1fr_1fr_1fr_1fr] items-center outline-0 border-t  border-gray-200 gap-x-3 md:gap-x-0 hover:bg-slate-100  hover:cursor-pointer'>
                                                      {/* Technician ID*/}
                                                      
                                                      <div className='text-blue-600 text-sm font-mono w-1/2 sm:w-full '>
-                                                         <Link to='/admin/requests/id'> {e.id}</Link>
+                                                         {`TECH-${filteredTechnician.id}`}
                                                       </div>
                                                      {/* Full Name */}
                                                    
-                                                     <div className='text-black text-sm font-semibold w-1/2 sm:w-full'>{e.fullName}</div>
+                                                     <div className='text-black text-sm font-semibold w-1/2 sm:w-full'>{`${filteredTechnician.firstName} ${filteredTechnician.lastName}`}</div>
                                                    
                                                      {/* Username */}
-                                                     <div className='text-gray-500 text-sm  w-[60%]  '>{e.username}</div>
+                                                     <div className='text-gray-500 text-sm  w-[60%]  '>{filteredTechnician.userName}</div>
                                                      {/* Status */}
                                                      <Status bgColor={statusStyle.bg} textColor={statusStyle.text} dotColor={statusStyle.dot} content={technicianStatusValue}/>
        
@@ -109,20 +144,57 @@ export default function Technicians() {
                                                      
                                                  </div>
                                                  </Link>
+                                                </>
+                                        :  currentData.map((e)=>{
+                                            const statusStyle = ColorsRendering.user[e.status];
+                                            const userObj = userStatus.find(item=>item.status===e.status);
+                                            const userStatusValue=userObj ? userObj.value : e.status;
+
+                                            
+                                           
+                                             return (
+                                                <>
+                                                <Link to={`/admin/technicians/${e.id}`} key={e.id}>
+                                                 <div className='px-3 py-3 min-h-13  grid grid-cols-[1fr_1fr_1fr_1fr] items-center outline-0 border-t  border-gray-200 gap-x-3 md:gap-x-0 hover:bg-slate-100  hover:cursor-pointer'>
+                                                     {/* Technician ID*/}
+                                                     
+                                                     <div className='text-blue-600 text-sm font-mono w-1/2 sm:w-full '>
+                                                         {`TECH-${e.id}`}
+                                                      </div>
+                                                     {/* Full Name */}
+                                                   
+                                                     <div className='text-black text-sm font-semibold w-1/2 sm:w-full'>{`${e.firstName} ${e.lastName}`}</div>
+                                                   
+                                                     {/* Username */}
+                                                     <div className='text-gray-500 text-sm  w-[60%]  '>{e.userName}</div>
+                                                     {/* Status */}
+                                                     <Status bgColor={statusStyle.bg} textColor={statusStyle.text} dotColor={statusStyle.dot} content={userStatusValue}/>
+       
+                                                      {/* Call Details info Saved Bay */}
+       
+                                                   
+                                                   
+                                                     
+                                                     
+                                                 </div>
+                                                 </Link>
+                                                </>
                                                  
                                              )
                                          })
                                      }
-                                    <Pagination  currentPage={currentPage} totalPages={totalPages}  setCurrentPage={setCurrentPage}/>
+                                    { ! Object.keys(filteredTechnician).length >0 ? <Pagination  currentPage={currentPage} totalPages={totalPages}  setCurrentPage={setCurrentPage}/> :''}
                                      
                                  </div>
                          
                        
        
                                </div>
+                               <Notification isOpen={notificationContent.message && notificationContent.status !==null}   onClose={() => setNotificationContent({ status: null, message: null })} message={notificationContent.message} status={notificationContent.status}>
+                                    </Notification>
        
                              
-                           </div>
+        </div>
            
          
 

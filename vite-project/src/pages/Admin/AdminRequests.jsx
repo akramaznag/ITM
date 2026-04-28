@@ -3,14 +3,25 @@ import { CheckCircle, ChevronDown, CircleAlert, Clock, File, Monitor, Phone,Sear
 import { paymentStatus, requestStatus } from '../../staticData/staticData';
 import { requests } from '../../staticData/staticData';
 import { ColorsRendering } from '../../staticData/staticData';
-import { Link } from 'react-router-dom';
-import Pagination from '../../components/Pagination';
+import { Link, useOutletContext } from 'react-router-dom';
+import Pagination from '../../components/UI/Pagination';
 import usePagination from '../../hooks/usePagination';
-import RequestStatusFilter from '../../components/RequestStatusFilter';
-import {Status} from '../../components/Status';
+import Filter from '../../components/Filter/Filter';
+import {Status} from '../../components/UI/Status';
+import { useSelector } from 'react-redux';
+import CreateButton from '../../components/UI/CreateButton';
+import AddRequestForm from '../../components/Forms/AddRequestForm';
 
 export default function AdminRequests() {
-
+    
+    
+    const { setPopupContent } = useOutletContext();
+    const token = useSelector(state=>state.auth.token);
+    const [notificationContent,setNotificationContent]=useState({
+          status:null,
+          message:null
+      
+    })
     
     const [activeStatus, setActiveStatus] = useState("all");
     const filteredrequests = activeStatus === 'all' ? requests : requests.filter(e=>e.status===activeStatus);
@@ -37,12 +48,8 @@ export default function AdminRequests() {
                 <h1 className='font-bold text-2xl text-black'>Requests</h1>
                 <p className='text-gray-600 text-sm'>Manage all service requests</p>
             </div>
-            <div className='bg-blue-500 hover:bg-blue-500/90 cursor-pointer flex items-center justify-center  rounded-xl h-10 px-5'>
-                <div className='capitalize  flex items-center gap-x-3'>
-                    <div className='text-2xl font-light relative bottom-[2px]'>+</div>
-                    <div className='text-sm font-semibold'>new request</div>
-                 </div>
-            </div>
+            <CreateButton setPopupContent={setPopupContent}   popupContent = {<AddRequestForm onClose={setPopupContent} setNotificationContent={setNotificationContent}/>} text={'add request'}/>
+           
         </div>
         {/* search bar and filter container  */}
         <div className="mb-5 w-full flex justify-between gap-x-3">
@@ -51,7 +58,10 @@ export default function AdminRequests() {
                 <input onChange={handleChange} type="text" name="" id="" placeholder='Search requests by ID  ex: REQ-001...' className='h-10 bg-none outline-none focus:outline-none border border-gray-400/20 focus:border-2 focus:border-blue-500 focus:duration-50 focus:ease-in-out rounded-xl w-full py-2 pl-8 pr-4  text-sm text-gray-800'/>
             </div>
             {/* filter */}
-            <RequestStatusFilter onStatusChange={setActiveStatus} />
+            <div className='w-32 md:w-38 lg:w-43'>
+
+                <Filter onStatusChange={setActiveStatus} data={requestStatus} />
+            </div>
             
             
            

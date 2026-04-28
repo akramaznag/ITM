@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { CheckCircle, ChevronDown, CircleAlert, Clock, File, Monitor, Phone,Search,User,Settings,LogOut, Check, Eye, EyeIcon } from 'lucide-react'
-import { requestStatus } from '../staticData/staticData';
+import { requestStatus } from '../../staticData/staticData';
 import { useLocation } from 'react-router-dom';
 
 export default function RequestStatusFilter({onStatusChange}) {

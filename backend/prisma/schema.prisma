@@ -1,0 +1,124 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+  
+}
+
+
+model User {
+ id Int @id @default(autoincrement())// Unique ID generated automatically
+  userName  String?  @unique
+  firstName String
+  lastName  String
+  email     String  @unique
+  password  String  
+  role      Role @default(CLIENT)
+  status      Status @default(ACTIVE)
+  phone     String ? @db.VarChar(10)       // exactly 10 characters
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+
+  //relations
+  requestsCreatedFor  Request[] @relation("ClientRequests")
+  requestsAssignedTo Request[] @relation("TechnicianRequests")
+}
+
+enum Status {
+  ACTIVE
+  INACTIVE
+}
+
+enum Role {
+  CLIENT
+  TECHNICIAN
+  ADMIN
+  SUPERADMIN
+}
+
+model Product {
+  id           Int      @id @default(autoincrement())
+  name         String   @unique
+  description  String?
+
+  brand        String
+  category     Category
+  status       ProductStatus   @default(ACTIVE)
+  price        Float     @default(0)
+  stock        Int      @default(0)
+
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  requests     Request[] @relation()
+}
+enum ProductStatus {
+  ACTIVE
+  INACTIVE
+  OUT_OF_STOCK
+
+}
+enum Category {
+  LAPTOP
+  DESKTOP
+  PRINTER
+  ACCESSORY
+}
+model Request {
+  id Int @id @default(autoincrement()) // Unique ID generated automatically
+  title       String
+  description String
+  status      RequestStatus @default(OPEN)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  // Relations
+  clientId      Int
+  client        User        @relation("ClientRequests", fields: [clientId], references: [id])
+
+  technicianId  Int?
+  technician    User?       @relation("TechnicianRequests", fields: [technicianId], references: [id])
+
+  productId     Int
+  product       Product     @relation(fields: [productId], references: [id])
+
+  calls         Call[]      @relation("RequestCalls") // One request can have multiple calls
+}
+
+enum RequestStatus {
+  OPEN
+  IN_PROGRESS
+  RESOLVED
+  CLOSED
+}
+
+model Call {
+  id Int @id @default(autoincrement()) // Unique ID generated automatically
+  type       CallType
+  phone      String   @db.VarChar(15)
+  date       DateTime
+  comment    String?
+  createdBy  String   // Could be Admin's name or userId
+
+  requestId  Int
+  request    Request  @relation("RequestCalls", fields: [requestId], references: [id]) // Correct relation
+
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+enum CallType {
+  PHONE
+  IN_PERSON
+  VIDEO
+}
+

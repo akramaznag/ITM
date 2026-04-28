@@ -1,37 +1,51 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
-import DashboardLayout from "../components/DashboardLayout";
+import DashboardLayout from "../components/Layouts/DashboardLayout";
 import AdminDashboard from "../pages/Admin/AdminDashboard";
 import AdminRequests from "../pages/Admin/AdminRequests"
 import GetRequest from "../pages/Admin/GetRequest";
 import Technicians from "../pages/Admin/Technicians";
 import GetTechnecian from "../pages/Admin/GetTechnecian";
 import Clients from "../pages/Admin/Clients";
-import GetClient from "../pages/Admin/getClient";
+import GetClient from "../pages/Admin/GetClient";
 import Login from "../pages/Auth/Login";
 import Register from "../pages/Auth/Register";
+import ProtectAdminRoutes from "../components/Auth/ProtectAdminRoutes";
+import Unauthorized from "../pages/Unauthorized";
+import Geust from "../components/Auth/Geust";
+import AdminProducts from '../pages/Admin/AdminProducts'
 
 const router = createBrowserRouter([
   // Landing page
   {
     path: "/",
-    element: <h1>Landing page coming soon ...</h1>,
+    element: <h1>landing page coming soon .</h1>,
+  },
+
+  //Not Authorized
+
+  {
+    path: "/unauthorized",
+    element: <Unauthorized/>,
   },
   //Auth Routes
   {
     path:"auth/login",
-    element:<Login/>
+
+    element: <Geust > <Login/>  </Geust>
 
   },
     {
     path:"auth/register",
-    element:<Register/>
+    element:<Geust > <Register/> </Geust>
 
   },
 
   // Admin routes
   {
     path: "/admin",
-    element: <DashboardLayout />,
+    element:<ProtectAdminRoutes>
+              <DashboardLayout />
+            </ProtectAdminRoutes>,
     children: [
       // default route: /admin → /admin/dashboard
       {
@@ -54,6 +68,11 @@ const router = createBrowserRouter([
         path:"requests/:id",
         element:<GetRequest/>
       },
+      {
+        path:"products",
+        element:<AdminProducts/>
+      }
+      ,
       {
         path:"technicians",
         element:<Technicians/>

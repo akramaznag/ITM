@@ -30,7 +30,7 @@ export default function Popup({ isOpen, onClose, children }) {
       {/* Content */}
       <div className="w-full h-screen flex items-center justify-center">
         <div
-          className={`bg-white rounded-xl w-110 h-auto p-6 ${
+          className={`bg-white rounded-xl w-auto max-h-[85vh] overflow-y-auto p-6 ${
             isOpen ? 'popup-open' : 'popup-close'
           }`}
           onClick={(e) => e.stopPropagation()}

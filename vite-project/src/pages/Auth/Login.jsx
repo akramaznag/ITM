@@ -1,24 +1,76 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { Wrench, ArrowRight } from "lucide-react";
+import React, { useState ,useEffect} from "react";
+import {  Link, Navigate, useNavigate, useOutletContext } from "react-router-dom";
+import { Wrench, ArrowRight, CheckCheckIcon, CheckCircle, X } from "lucide-react";
+import { login } from "../../services/authServices/authService";
+import Notification from "../../components/UI/Notification";
+import LoginShema from "../../validations/LoginShema";
+import {useDispatch, useSelector} from 'react-redux';
+import { setAuth } from "../../redux/AuthSlice";
 
 export default function Login() {
+  const token = useSelector(state => state.auth?.token);
+  console.log(token)
   const navigate = useNavigate();
-  const [isSignup, setIsSignup] = useState(false);
-  const [role, setRole] = useState("client");
+  const dispatch = useDispatch()
+  const [notificationContent,setNotificationContent]=useState({
+      status:null,
+      message:null
+  
+    })
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const [formData,setFormData] =useState({
+    email:'',
+    password:'',
+  })
+  const [errors, setErrors] = useState({});
 
-    const routes = {
-      client: "/client/dashboard",
-      technician: "/technician/dashboard",
-      admin: "/dashboard",
-      superadmin: "/dashboard",
-    };
+  const handleChange = (key, e) => {
+      const value = key==='password'? e.target.value: e.target.value.trim();
 
-    navigate(routes[role] || "/dashboard");
+      setFormData((prev) => ({
+        ...prev,
+        [key]: value
+      }));
+
   };
+ 
+
+
+  useEffect(() => {
+      const result = LoginShema.safeParse(formData);
+
+      if (!result.success) {
+        const formattedErrors = {};
+
+        result.error.issues.forEach((issue) => {
+          const field = issue.path[0]; // important
+          formattedErrors[field] = issue.message;
+        });
+
+        setErrors(formattedErrors);
+      } else {
+        setErrors({});
+      }
+    }, [formData]);
+
+
+
+const handleSubmit = (e) => {
+  e.preventDefault();
+
+  login(formData)
+  .then(res => {
+          const payload ={ user:res.data.data,  token:res.data.token  }
+          dispatch(setAuth(payload))
+          navigate('/admin/dashboard')
+        
+      })
+        .catch(error => {
+          console.log(error);
+
+          setNotificationContent({ status: "danger",   message: error.response?.data?.message || "Login Failed,please try again" });
+        });
+};
 
   return (
     <div className="min-h-screen flex">
@@ -79,71 +131,71 @@ export default function Login() {
           </h2>
 
           <p className="text-gray-500 text-sm mb-6">
-            Sign in to your ITM dashboard
+              Sign in to your ITM dashboard
+
+              
           </p>
 
-          {/* Role selector */}
-          <div className="mb-6">
-            <label className="text-xs text-gray-500 mb-2 block">
-              Select role
-            </label>
-
-            <div className="grid grid-cols-4 gap-1.5">
-              {["client", "technician", "admin"].map((r) => (
-                <button
-                  key={r}
-                  type="button"
-                  onClick={() => setRole(r)}
-                  className={`text-xs py-1.5 px-2 rounded-md font-medium capitalize transition ${
-                    role === r
-                      ? "bg-blue-500 text-white"
-                      : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-                  }`}
-                >
-                  {r}
-                </button>
-              ))}
-            </div>
-          </div>
+         
 
           {/* Form */}
-          <form onSubmit={handleSubmit} className="space-y-4">
-           
-
-            <div>
+          <form onSubmit={(e)=>handleSubmit(e)} className={`${Object.keys(errors).length>0 ? 'space-y-2' : 'space-y-4'}  grid grid-cols-2  gap-x-2 w-full`}>
+  
+            <div className="col-span-2">
               <label className="text-sm font-medium">Email</label>
-              <input
+              <input onChange={(e)=>handleChange("email",e)}
                 type="email"
+                value={formData.email}
                 placeholder="you@company.com"
-                className="mt-1.5 w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:border-blue-500 outline-none"
+                className={`mt-1.5 w-full border border-gray-300 rounded-lg px-3 py-2 text-sm ${ errors.email?'focus:border-red-500':'focus:border-blue-500'} outline-none`}
               />
+            {errors.email && <p className="text-sm font-semibold text-red-500">{errors.email}</p>}
+
             </div>
 
-            <div>
+            <div className="col-span-2">
               <label className="text-sm font-medium">Password</label>
-              <input
+              <input onChange={(e)=>handleChange("password",e)}
                 type="password"
+                value={formData.password}
                 placeholder="••••••••"
-                className="mt-1.5 w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:border-blue-500 outline-none"
+                className={`mt-1.5 w-full border border-gray-300 rounded-lg px-3 py-2 text-sm ${ errors.password?'focus:border-red-500':'focus:border-blue-500'} outline-none`}
+
               />
+              {errors.password && <p className="text-sm font-semibold text-red-500">{errors.password}</p>}
+            </div>
+           
+            <div className="col-span-2">
+              {
+                Object.keys(errors).length>0 ?
+                
+                <div className={`w-full flex items-center justify-center bg-gray-300 cursor-not-allowed  text-white py-2 rounded-lg font-medium`}>
+                  Sign In
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </div>
+                :
+                  <button   type="submit" className={`w-full flex items-center justify-center bg-blue-500  hover:bg-blue-600 transition  text-white py-2 rounded-lg font-medium`}  >
+                     Sign In
+                   <ArrowRight className="ml-2 h-4 w-4" />
+                   </button>
+                   
+              }
+
             </div>
 
-            <button type="submit"
-              className="w-full flex items-center justify-center bg-blue-500 text-white py-2 rounded-lg font-medium hover:bg-blue-600 transition"
-            >
-            Sign In
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </button>
           </form>
 
           <p className="text-center text-sm text-gray-500 mt-6">
-            {"Don't have an account  "}
-            <Link to={'/auth/register'}  className="text-blue-500 font-medium hover:underline">
-              Sign up
+            {"Already have an account?  "}
+            <Link to={'/auth/register'}       className="text-blue-500 font-medium hover:underline"
+            >
+             Sign up
             </Link>
           </p>
         </div>
       </div>
+      <Notification isOpen={notificationContent.message !==null}   onClose={() => setNotificationContent({ status: null, message: null })} message={notificationContent.message} status={notificationContent.status}>
+      </Notification>
     </div>
   );
 }

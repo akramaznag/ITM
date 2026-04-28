@@ -1,15 +1,28 @@
-import React, { useState } from 'react'
+import { useState,useEffect } from 'react'
 import { CheckCircle, ChevronDown, CircleAlert, Clock, File, Monitor, Phone,Search,User,Settings,LogOut, Check, Eye, EyeIcon, ArrowLeft, CreditCard, Calendar, AtSign, Mail, FileText } from 'lucide-react'
-import { Calls, requests, requestStatus, technicianStatus } from '../../staticData/staticData';
-import { Link, useOutletContext } from "react-router-dom";
-import { NotRequestedStatus, OpenedStatus, Status } from '../../components/Status';
-import { ColorsRendering } from '../../staticData/staticData';
-import { UserDetailsCard } from '../../components/Cards';
+import { Calls, requests, requestStatus, userStatus ,ColorsRendering} from '../../staticData/staticData';
+import { Link, useOutletContext, useParams } from "react-router-dom";
+import {  Status } from '../../components/UI/Status';
+import { UserDetailsCard } from '../../components/UI/Cards';
+import { useSelector } from 'react-redux';
+import { getClientyId } from '../../services/AdminServices/AdminServices';
 
 export default function GetClient() {
 
-  const { isSidebarOpened } = useOutletContext();
-  console.log('this is from GetRequest.jsx ',isSidebarOpened)
+    const { isSidebarOpened } = useOutletContext();
+    const {id} = useParams();
+    const token = useSelector(state=>state.auth.token); 
+    const [client,setClient] = useState({});
+    console.log('id from getclient')
+        useEffect(()=>{
+
+            getClientyId(id,token)
+            .then(res=>{
+                setClient(res.data.data)
+            }).catch(err=>console.log(err?.response?.data?.message))
+
+        },[])
+  
 
 
    
@@ -19,12 +32,12 @@ export default function GetClient() {
             {/*Request heading */}   
             <div className='mb-4 w-full flex flex-col gap-y-3 md:gap-y-0 md:flex-row md:justify-start'>
                 <div className='flex gap-x-2 md:gap-x-5 items-center bg-green w-full md:w-auto'>
-                    <div className='p-2 md:p-3 rounded-lg flex items-center  gap-x-3 w-fit hover:bg-[hsl(var(--accent))] group duration-200'>
+                    <Link to={'/admin/clients'} className='p-2 md:p-3 rounded-lg flex items-center  gap-x-3 w-fit hover:bg-[hsl(var(--accent))] group duration-200'>
                         <ArrowLeft className='text-gray-500  w-4 h-4  group-hover:text-white'/>
                         <div className='text-gray-500 text-sm font-semibold  group-hover:text-white'>
-                            Back to Clients
+                            Back to Clients 
                         </div>
-                    </div>
+                    </Link>
                     
 
                 </div>
@@ -38,12 +51,12 @@ export default function GetClient() {
                     <UserDetailsCard>
                          <div className='flex items-center justify-start gap-x-2  p-3 rounded-xl'>
                                  <div className='w-15 h-15 bg-blue-100 flex items-center justify-center rounded-full'>
-                                    <div className='text-xl font-bold text-[hsl(210,100%,45%)]'>AM</div>                              
+                                    <div className='text-xl font-bold text-[hsl(210,100%,45%)]'>{`${client.firstName?.charAt(0) || ''}${client.lastName?.charAt(0) || ''}`}</div>                              
                                  </div>
 
                                 <div className='flex flex-col '>
-                                    <div className='capitalize font-bold text-2xl'>Ahmed Benali</div>
-                                    <div className='text-gray-500 text-sm  capitalize font-normal'>client account</div>
+                                    <div className='capitalize font-bold text-2xl'>{`${client?.firstName || ''}  ${client?.lastName || ''}`}</div>
+                                    <div className='text-gray-500 text-sm  capitalize font-normal'>client Account </div>
 
                                 </div>
                             </div>

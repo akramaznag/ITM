@@ -3,10 +3,10 @@ import { CheckCircle, ChevronDown, CircleAlert, Clock, File, Monitor, Phone,Sear
 import { Calls, requestStatus } from '../../staticData/staticData';
 import { requests } from '../../staticData/staticData';
 import { ColorsRendering } from '../../staticData/staticData';
-import RequestStatusFilter from '../../components/RequestStatusFilter';
+import RequestStatusFilter from '../../components/Filter/RequestStatusFilter';
 import { useOutletContext } from "react-router-dom";
-import { NotRequestedStatus, OpenedStatus } from '../../components/Status';
-import {RequestDetailsCard} from '../../components/Cards';
+import { NotRequestedStatus, OpenedStatus } from '../../components/UI/Status';
+import {RequestDetailsCard} from '../../components/UI/Cards';
 
 export default function GetRequest() {
 

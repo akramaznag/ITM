@@ -12,12 +12,28 @@ export const paymentStatus =[
         { status:"paid",value:"Paid"}
 
 ]
-export const technicianStatus =[
+export const userStatus =[
         { status:"all",value:"All Status"},
-        { status:"active",value:"Active"},
-        { status:"inactive",value:"Inactive"},
+        { status:"ACTIVE",value:"Active"},
+        { status:"INACTIVE",value:"Inactive"},
         { status:"paid",value:""}
 
+]
+export const ProductStatus =[
+        { status:"all",value:"All Status"},
+        { status:"ACTIVE",value:"Active"},
+        { status:"INACTIVE",value:"Inactive"},
+        { status:"OUT_OF_STOCK",value:"Out Of Stock"},
+
+]
+export const Category =[
+        {value:'All Categories'},
+        {status:'LAPTOP',value:'Laptop'},
+        {status:'DESKTOP',value:'Desktop'},
+        {status:'PRINTER',value:'Printer'},
+        {status:'ACCESSORY',value:'Accessory'},
+  
+  
 ]
 export const ColorsRendering = {
   status: {
@@ -60,18 +76,37 @@ export const ColorsRendering = {
       dot: "bg-gray-500"
     }
   },
-  technician: {
+  user: {
    
-    "active": {
+    "ACTIVE": {
       text: "text-green-600",
       bg: "bg-green-100",
       dot: "bg-green-600"
     },
-    "inactive": {
+    "INACTIVE": {
       text: "text-gray-500",
       bg: "bg-gray-200",
       dot: "bg-gray-500"
     }
+  },
+  product: {
+   
+    "ACTIVE": {
+      text: "text-green-600",
+      bg: "bg-green-100",
+      dot: "bg-green-600"
+    },
+    "INACTIVE": {
+      text: "text-gray-500",
+      bg: "bg-gray-200",
+      dot: "bg-gray-500"
+    },
+     "OUT_OF_STOCK": {
+      text: "text-red-500",
+      bg: "bg-red-200",
+      dot: "bg-red-500"
+    },
+
   }
 };
 

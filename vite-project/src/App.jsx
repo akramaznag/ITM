@@ -1,8 +1,12 @@
 import { useState } from "react";
-import Header from "./components/Header"
-import SideBar from "./components/SideBar";
-import DashboardLayout from "./components/DashboardLayout";
+
+import DashboardLayout from "./components/Layouts/DashboardLayout";
+
+
+
+
 function App() {
+ 
 
   return (
     
