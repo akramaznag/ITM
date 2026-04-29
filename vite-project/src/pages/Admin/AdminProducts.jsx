@@ -83,7 +83,10 @@ export default function AdminProducts() {
                 <input onChange={handleChange} type="text" name="" id="" placeholder='Search by name or brand' className='h-10 bg-none outline-none focus:outline-none border border-gray-400/20 focus:border-2 focus:border-blue-500 focus:duration-50 focus:ease-in-out rounded-xl w-full py-2 pl-8 pr-4  text-sm text-gray-800'/>
             </div>
             {/* filter */}
-            <Filter onStatusChange={setActiveStatus}  data={Category}/>
+            <div className='w-32 md:w-38 lg:w-43'>
+
+                <Filter onStatusChange={setActiveStatus}  data={Category}/>
+            </div>
             
             
            
