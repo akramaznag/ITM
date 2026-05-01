@@ -86,10 +86,10 @@ It enables clients to create support tickets, allows administrators to manage an
 
 ## 📷 Screenshots
 
+<img width="959" height="476" alt="image" src="https://github.com/user-attachments/assets/94ea9f2e-d499-468d-8153-ba4e366506a7" />
 <img width="959" height="472" alt="login" src="https://github.com/user-attachments/assets/827f6147-c6f7-44f9-834a-771823a6e507" />
 <img width="959" height="470" alt="register" src="https://github.com/user-attachments/assets/82b3e6af-3b61-40a4-9b56-4aa54a037707" />
 
-<img width="959" height="476" alt="image" src="https://github.com/user-attachments/assets/94ea9f2e-d499-468d-8153-ba4e366506a7" />
 
 <img width="949" height="476" alt="image" src="https://github.com/user-attachments/assets/b8642bdf-29d9-4f71-afec-c78b89ac84b3" />
 <img width="947" height="477" alt="image" src="https://github.com/user-attachments/assets/e19693de-e78d-4bc3-b005-00942e83dd63" />
