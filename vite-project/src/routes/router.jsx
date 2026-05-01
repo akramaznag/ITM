@@ -13,12 +13,13 @@ import ProtectAdminRoutes from "../components/Auth/ProtectAdminRoutes";
 import Unauthorized from "../pages/Unauthorized";
 import Geust from "../components/Auth/Geust";
 import AdminProducts from '../pages/Admin/AdminProducts'
+import LandingPage from "../pages/LandingPage";
 
 const router = createBrowserRouter([
   // Landing page
   {
     path: "/",
-    element: <h1>landing page coming soon .</h1>,
+    element: <LandingPage/>,
   },
 
   //Not Authorized
