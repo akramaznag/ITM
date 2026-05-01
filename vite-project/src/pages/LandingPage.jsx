@@ -119,12 +119,12 @@ const LandingPage = () => {
           <div className="hidden md:flex items-center gap-3">
             <button
               onClick={() => navigate("/auth/login")}
-              className="inline-flex items-center justify-center h-10 px-4 rounded-md text-sm font-medium text-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
+              className="inline-flex items-center justify-center h-10 px-4  text-sm font-medium text-foreground hover:bg-accent hover:text-accent-foreground transition-colors  p-2 rounded-lg hover:bg-[hsl(var(--accent))] group duration-200"
             >
-              Sign In
+                <span className="block group-hover:text-white cursor-pointer">Sign In</span>
             </button>
             <button
-              onClick={() => navigate("/login")}
+              onClick={() => navigate("/auth/login")}
               className="inline-flex items-center justify-center h-10 px-4 rounded-md text-sm font-medium bg-blue-500 text-blue-500-foreground hover:bg-blue-500/90 transition-colors text-white"
             >
               Get Started <ArrowRight className="ml-1 h-4 w-4" />
@@ -180,7 +180,7 @@ const LandingPage = () => {
             </p>
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
               <button
-                onClick={() => navigate("/login")}
+                onClick={() => navigate("/auth/login")}
                 className="inline-flex items-center justify-center h-11 px-6 rounded-md text-base font-medium bg-blue-500 text-white hover:bg-blue-500/90 transition-colors"
               >
                 Start Free Trial <ArrowRight className="ml-2 h-4 w-4" />
