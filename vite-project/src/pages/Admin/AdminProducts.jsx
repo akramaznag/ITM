@@ -95,7 +95,7 @@ export default function AdminProducts() {
         <div   className='w-full  h-auto overflow-x-auto md:overflow-x-hidden bg-white border border-gray-200 rounded-xl slide-in-from-bottom duration-600'>
                
                     {/* columns */}
-                    <div className='min-w-[650px] bg-slate-100 outline-0 border-y  border-gray-200 sm:w-full md:w-full px-3 h-13 md:px-4 md:py-3 grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_1fr] md:grid-cols-[0.7fr_1.3fr_1fr_1fr_1fr_1.6fr_0.4fr]  items-center border border-t-gray-200 border-b-gray-300 '>
+                    <div className='min-w-[500px] bg-slate-100 outline-0 border-y  border-gray-200 sm:w-full md:w-full px-3 h-13 md:px-4 md:py-3 grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_1fr] md:grid-cols-[0.7fr_1.3fr_1fr_1fr_1fr_1.6fr_0.4fr]  items-center border border-t-gray-200 border-b-gray-300 '>
                         <span className='text-gray-500 text-xs font-semibold '>id</span>
                         <span className='text-gray-500 text-xs font-semibold '>Product</span>
                         <span className='text-gray-500 text-xs font-semibold '>Category</span>
@@ -120,7 +120,7 @@ export default function AdminProducts() {
                             return (
 
                                  <Link to={`/admin/technicians/${e.id}`} key={e.id}>
-                                <div className='min-w-[650px] sm:w-full  md:w-full px-3 py-2 md:px-4 md:py-3 grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_1fr] md:grid-cols-[0.7fr_1.3fr_1fr_1fr_1fr_1.6fr_0.4fr]  items-center  outline-0 border-t  border-gray-200 gap-x-3 md:gap-x-0 hover:bg-slate-100  hover:cursor-pointer group'>
+                                <div className='min-w-[500px] sm:w-full  md:w-full px-3 py-2 md:px-4 md:py-3 grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_1fr] md:grid-cols-[0.7fr_1.3fr_1fr_1fr_1fr_1.6fr_0.4fr]  items-center  outline-0 border-t  border-gray-200 gap-x-3 md:gap-x-0 hover:bg-slate-100  hover:cursor-pointer group'>
                                     
                                     {/* request ID */}
                                     <div className='text-blue-500 text-sm font-mono w-1/2 sm:w-full '>

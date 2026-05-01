@@ -68,9 +68,11 @@ export default function AdminRequests() {
         </div>
         {/* requests analytics section */}
         <div   className='w-full  h-auto overflow-x-auto md:overflow-x-hidden bg-white border border-gray-200 rounded-xl slide-in-from-bottom duration-600'>
-               
+                <div className='min-w-[500px] md:min-w-0'>
+
+                    
                     {/* columns */}
-                    <div className='min-w-[650px] sm:w-full md:w-full px-3 h-13 md:px-4 md:py-3 grid grid-cols-[0.8fr_1.2fr_0.8fr_2fr_1.2fr_1.5fr_1fr_0.5fr] md:grid-cols-[0.8fr_1.2fr_1fr_1.5fr_1fr_1.5fr_1fr_0.5fr] items-center border border-t-gray-200 border-b-gray-300 '>
+                    <div className='sm:w-full md:w-full px-3 h-13 md:px-4 md:py-3 grid grid-cols-[0.8fr_1.2fr_0.8fr_2fr_1.2fr_1.5fr_1fr_0.5fr] md:grid-cols-[0.8fr_1.2fr_1fr_1.5fr_1fr_1.5fr_1fr_0.5fr] items-center border border-t-gray-200 border-b-gray-300 '>
                         <span className='text-gray-500 text-xs font-semibold '>ID</span>
                         <span className='text-gray-500 text-xs font-semibold '>Product</span>
                         <span className='text-gray-500 text-xs font-semibold '>Client</span>
@@ -97,7 +99,7 @@ export default function AdminRequests() {
                             
                             return (
 
-                                <div className='min-w-[650px] sm:w-full  md:w-full px-3 py-2 md:px-4 md:py-3 grid grid-cols-[0.8fr_1.2fr_0.8fr_2fr_1.2fr_1.5fr_1fr_0.5fr] md:grid-cols-[0.8fr_1.2fr_1fr_1.5fr_1fr_1.5fr_1fr_0.5fr] items-center  border-t border-t-gray-200  '>
+                                <div className='min-w-[500px] sm:w-full  md:w-full px-3 py-2 md:px-4 md:py-3 grid grid-cols-[0.8fr_1.2fr_0.8fr_2fr_1.2fr_1.5fr_1fr_0.5fr] md:grid-cols-[0.8fr_1.2fr_1fr_1.5fr_1fr_1.5fr_1fr_0.5fr] items-center  border-t border-t-gray-200  '>
                                     {/* request ID */}
                                     <div className='text-blue-500 text-sm font-mono w-1/2 sm:w-full '>
                                      <Link to='/admin/requests/id'> {e.id}</Link>
@@ -176,6 +178,7 @@ export default function AdminRequests() {
                        : ''
                     }
                    
+                </div>
             
 
         </div>
